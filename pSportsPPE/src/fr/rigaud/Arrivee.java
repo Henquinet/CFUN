@@ -17,7 +17,7 @@ public class Arrivee {
 	public char getChoixSport() {
 		return choixSport;
 	}
-
+	//test
 	private long horaireArrivee;
 	private Calendar hDep;
 
