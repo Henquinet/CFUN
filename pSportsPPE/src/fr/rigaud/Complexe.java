@@ -9,7 +9,14 @@ import java.util.List;
 
 public class Complexe {
 	private static int numeroActuel = 0;
+	private int nbTotalPlacesFit;
+	private int nbTotalPlacesMuscu;
 
+	private int nbPlacesOccupeesFit;
+	private int nbPlacesOccupeesMuscu;
+	
+	private String nomComplexe;
+	
 	public static int getNumeroActuel() {
 		return numeroActuel;
 	}
@@ -18,17 +25,13 @@ public class Complexe {
 		Complexe.numeroActuel = Complexe.getNumeroActuel() + 1;
 	}
 
-	private String nomComplexe;
+	
 
 	public String getNomComplexe() {
 		return nomComplexe;
 	}
 
-	private int nbTotalPlacesFit;
-	private int nbTotalPlacesMuscu;
 
-	private int nbPlacesOccupeesFit;
-	private int nbPlacesOccupeesMuscu;
 
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
 
