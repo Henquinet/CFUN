@@ -11,16 +11,13 @@ public class Complexe {
 	private static int numeroActuel = 0;
 	private int nbTotalPlacesFit;
 	private int nbTotalPlacesMuscu;
-
 	private int nbPlacesOccupeesFit;
 	private int nbPlacesOccupeesMuscu;
-	
 	private String nomComplexe;
-	
-	
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
 	
 
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +193,6 @@ public class Complexe {
 			courant = lesArrivees.get(++i);
 		return courant;
 	}
-	
 	
 	
 	private String couleurMuscu() {
