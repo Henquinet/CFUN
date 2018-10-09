@@ -15,7 +15,6 @@ public class ChoixCouleur {
 				couleur = Couleur.rouge;
 			}
 		}
-		
 	}
 	
 	public Couleur getCouleur() {
