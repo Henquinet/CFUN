@@ -17,23 +17,28 @@ public class Complexe {
 	
 	private String nomComplexe;
 	
-	public static int getNumeroActuel() {
-		return numeroActuel;
-	}
-
-	public static void setNumeroActuel() {
-		Complexe.numeroActuel = Complexe.getNumeroActuel() + 1;
-	}
-
+	
+	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
 	
 
-	public String getNomComplexe() {
-		return nomComplexe;
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit, final String nomComplexe) {
+		this.nbTotalPlacesFit = nbTotalPlacesFit;
+		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
+		this.nomComplexe = nomComplexe;
+		this.nbPlacesOccupeesFit = 0;
+		this.nbPlacesOccupeesMuscu = 0;
 	}
 
 
-
-	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public boolean entreeUsager(final Arrivee uneArrivee) {
 		boolean ok;
@@ -71,19 +76,9 @@ public class Complexe {
 		return leDepart;
 	}
 
-	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit,
-			final String nomComplexe) {
-		this.nbTotalPlacesFit = nbTotalPlacesFit;
-		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
-		this.nomComplexe = nomComplexe;
-		this.nbPlacesOccupeesFit = 0;
-		this.nbPlacesOccupeesMuscu = 0;
-	}
 
-	private String couleurMuscu() {
-		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
-		return choixCouleur.getCouleur().toString();
-	}
+
+	
 
 	public double etatFit() {
 		return (this.getNbPlacesOccupeesFit()) * 1.0 / this.nbTotalPlacesFit;
@@ -128,13 +123,7 @@ public class Complexe {
 		return leDoc;
 	}
 
-	public int getNbPlacesRestantesFit() {
-		return this.nbTotalPlacesFit - (this.nbPlacesOccupeesFit);
-	}
 
-	public int getNbPlacesOccupeesFit() {
-		return this.nbPlacesOccupeesFit;
-	}
 
 	public void nouvelUsagerFitness() {
 		nbPlacesOccupeesFit++;
@@ -160,16 +149,46 @@ public class Complexe {
 		nbPlacesOccupeesMuscu--;
 	}
 
-	private String couleurFit() {
-		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
-		return choixCouleur.getCouleur().toString();
-	}
-
 	public double etatMuscu() {
 		return (this.getNbPlacesOccupeesMuscu()) * 1.0
 				/ this.nbTotalPlacesMuscu;
 	}
 
+	
+	
+		
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public int getNbPlacesRestantesFit() {
+		return this.nbTotalPlacesFit - (this.nbPlacesOccupeesFit);
+	}
+
+	public int getNbPlacesOccupeesFit() {
+		return this.nbPlacesOccupeesFit;
+	}
+	
+	public static int getNumeroActuel() {
+		return numeroActuel;
+	}
+
+	public static void setNumeroActuel() {
+		Complexe.numeroActuel = Complexe.getNumeroActuel() + 1;
+	}
+
+	public String getNomComplexe() {
+		return nomComplexe;
+	}
+	
+	
+
+	
+		
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// METHODES PRIVEES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 	private Arrivee recherche(int num) {
 		int i = 0;
 		Arrivee courant = lesArrivees.get(i);
@@ -177,4 +196,20 @@ public class Complexe {
 			courant = lesArrivees.get(++i);
 		return courant;
 	}
+	
+	
+	
+	private String couleurMuscu() {
+		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
+		return choixCouleur.getCouleur().toString();
+	}
+	
+	
+	private String couleurFit() {
+		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
+		return choixCouleur.getCouleur().toString();
+	}
+	
+	
+	
 }
