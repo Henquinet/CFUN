@@ -4,10 +4,10 @@ public class TestComplexe {
 	private static int nbMuscu = 4;
 	private static int nbFit = 5;
 	private static final String nomComplexe = "C Fun";
-	private static final String TYPE = "Type opÃ©ration (E)ntrÃ©e ou (S)ortie : ";
-	private static final String SORTIE = "NÂ° d'entrÃ©e Ã  sortir : ";
+	private static final String TYPE = "Type opération (E)ntrée ou (S)ortie : ";
+	private static final String SORTIE = "N° d'entrée Ã  sortir : ";
 	private static final String CHOIX = "(M)usculation, (F)itness : ";
-	private static final String AUTRE = "Autre opÃ©ration (O/N) : ";
+	private static final String AUTRE = "Autre opération (O/N) : ";
 	
 	public static void main(String[] args) {
 		Complexe leComplexe = new Complexe(nbMuscu, nbFit, nomComplexe);
@@ -25,6 +25,7 @@ public class TestComplexe {
 				if (leComplexe.entreeUsager(jArrive)) {
 					System.out.println(jArrive.afficheBillet());
 				}
+				repAutre='O';
 			}
 			else{
 				repSortie = Integer.parseInt(javax.swing.JOptionPane.showInputDialog(SORTIE));

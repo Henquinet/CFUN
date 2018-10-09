@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class ArriveeTest {
 	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void testCalculPrix() {
 		final double DELTA = 0.1;
