@@ -93,7 +93,7 @@ public class Arrivee {
 		if (duree <= 30 && duree > 15) {
 			cout = 0.5;
 		} else {
-			if (duree < 60) {
+			if (duree < 60 && duree >30) {
 				cout = 1;
 			} else {
 				// cout fixe d'une heure
