@@ -53,7 +53,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <MenuBar prefHeight="25.0" prefWidth="500.0" style="-fx-background-color: lightslategrey;">
+      <MenuBar layoutX="6.0" layoutY="2.0" prefHeight="25.0" prefWidth="500.0" style="-fx-background-color: lightslategrey;">
         <menus>
           <Menu mnemonicParsing="false" text="Informations">
             <items>
