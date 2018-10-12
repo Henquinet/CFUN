@@ -76,6 +76,8 @@ public class Controleur {
 	private void showFitOrMusc(boolean fitn) {
 		if(fitn) {
 			l_fm_t.setText(TITRE_FITN);
+
+			
 		}
 		else {
 			l_fm_t.setText(TITRE_MUSC);
