@@ -1,5 +1,12 @@
 package fr.rigaud;
 
+
+/*
+* Couleurs en fonction des états : 
+*  ~ vert < 70%
+*  ~ 70% <= orange < 100%
+*  ~ rouge = 100%  
+*/
 public class ChoixCouleur {
 	private Couleur couleur;
 

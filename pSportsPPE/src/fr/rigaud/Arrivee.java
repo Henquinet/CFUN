@@ -34,7 +34,7 @@ public class Arrivee {
 
 	public String afficheBillet() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Billet d'entrÃ©e nÂ° : ";
+		final String MSGNUM = "Billet d'entrée n° : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 
@@ -55,7 +55,7 @@ public class Arrivee {
 
 	public String afficheTicket() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Ticket de sortie nÂ° : ";
+		final String MSGNUM = "Ticket de sortie n° : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 		final String MSGCOUT = "Montant : ";

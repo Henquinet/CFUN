@@ -87,8 +87,8 @@ public class Complexe {
 		final String MSGHEURE = "heure : ";
 		final String MSGDISPMUSCU = "Places disponibles M : ";
 		final String MSGDISPFIT = "Places disponibles F : ";
-		final String MSGOCCMUSCU = "Places occupÃ©es M : ";
-		final String MSGOCCFIT = "Places occupï¿½es F : ";
+		final String MSGOCCMUSCU = "Places occupées M : ";
+		final String MSGOCCFIT = "Places occupées F : ";
 		final String MSGTXMUSCU = "Taux occ. M : ";
 		final String MSGTXFIT = "Taux occ. F : ";
 		final String MSGCOULMUSCU = "Couleur M : ";
@@ -204,8 +204,5 @@ public class Complexe {
 	private String couleurFit() {
 		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
 		return choixCouleur.getCouleur().toString();
-	}
-	
-	
-	
+	}	
 }
