@@ -108,7 +108,6 @@ public class Controleur {
 		
 		
 		switch(new ChoixCouleur(etat).getCouleur()) {
-		
 			case vert:
 				c_color.fillProperty().set(Paint.valueOf("green"));
 				break;
@@ -118,7 +117,6 @@ public class Controleur {
 			case rouge:
 				c_color.fillProperty().set(Paint.valueOf("red"));
 				break;
-		
 		}
 		
 		
