@@ -63,15 +63,20 @@ public class Controleur {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Controleur() {
-		comp = new Complexe(5,5,"test");
+		comp = new Complexe(5,2,"test");
+		Arrivee test = new Arrivee(comp,'M');
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
 		
 	} 
-	
+	@FXML
 	private void initialize()
 	{
-		 l_main.setText(TITRE_MAIN + comp.getNomComplexe());
-		 
-		 showFitOrMusc(true);
+		// l_main.setText(TITRE_MAIN + comp.getNomComplexe());
+	//	 System.out.println("yo");
+		 showFitOrMusc(false);
 		 
 	}
 	
@@ -82,12 +87,24 @@ public class Controleur {
 	
 	
 	private void showFitOrMusc(boolean fitn) {
+		double etat = 0;
 		if(fitn) {
 			l_fm_t.setText(TITRE_FITN);
 			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
-			//l_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
-			switch(new ChoixCouleur(comp.etatFit()).getCouleur()) {
+			etat = comp.etatFit();
 			
+			
+		}
+		else {
+			l_fm_t.setText(TITRE_MUSC);
+			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
+			etat = comp.etatMuscu();
+		}
+		
+		
+		
+		switch(new ChoixCouleur(etat).getCouleur()) {
+		
 			case vert:
 				c_color.fillProperty().set(Paint.valueOf("green"));
 				break;
@@ -97,17 +114,11 @@ public class Controleur {
 			case rouge:
 				c_color.fillProperty().set(Paint.valueOf("red"));
 				break;
-			
-			}
-			
-			
-			
+		
 		}
-		else {
-			l_fm_t.setText(TITRE_MUSC);
-			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
-			//l_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
-		}
+		
+		
+		
 	}
 	
 	@FXML

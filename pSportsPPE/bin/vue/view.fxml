@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.Controleur">
    <children>
       <TabPane layoutY="25.0" prefHeight="274.0" prefWidth="500.0" style="-fx-background-color: lightgrey;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <tabs>
@@ -19,10 +19,10 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="33.0" layoutY="48.0" text="Infos" underline="true" />
+                        <Label fx:id="l_fm_t" layoutX="33.0" layoutY="48.0" text="Infos" underline="true" />
                         <Label layoutX="72.0" layoutY="131.0" text="Etat place occupée :" />
-                        <Label layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
-                        <Circle fill="WHITE" layoutX="277.0" layoutY="139.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="123.0" />
+                        <Label fx:id="l_fm_dispo" layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
+                        <Circle fx:id="c_color" fill="WHITE" layoutX="277.0" layoutY="139.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="123.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -69,7 +69,7 @@
           <Menu mnemonicParsing="false" text="Quitter">
             <items>
               <MenuItem mnemonicParsing="false" text="Rester" />
-                  <MenuItem mnemonicParsing="false" text="Quitter" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Quitter" />
             </items>
           </Menu>
         </menus>
