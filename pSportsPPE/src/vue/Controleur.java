@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
@@ -85,6 +86,22 @@ public class Controleur {
 			l_fm_t.setText(TITRE_FITN);
 			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
 			//l_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
+			switch(new ChoixCouleur(comp.etatFit()).getCouleur()) {
+			
+			case vert:
+				c_color.fillProperty().set(Paint.valueOf("green"));
+				break;
+			case orange:
+				c_color.fillProperty().set(Paint.valueOf("orange"));
+				break;
+			case rouge:
+				c_color.fillProperty().set(Paint.valueOf("red"));
+				break;
+			
+			}
+			
+			
+			
 		}
 		else {
 			l_fm_t.setText(TITRE_MUSC);
