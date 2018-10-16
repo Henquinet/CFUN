@@ -9,12 +9,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class Controleur {
@@ -120,6 +124,23 @@ public class Controleur {
 		
 		
 	}
+	
+	@FXML
+	private void openWindow()
+	{
+		try {
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/vue/view.fxml"));
+
+		    primaryStage.setScene(new Scene(root));
+		    primaryStage.setTitle("CFUN");
+		    primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
+	
 	
 	@FXML
 	private void exit() {
