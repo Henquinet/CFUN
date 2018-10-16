@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 
 public class Controleur {
-	// Main------------------------------------------------------------
+	// Main-------------------------------------------------------------
 	@FXML
 	private MenuBar menu;
 	@FXML
