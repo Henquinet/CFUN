@@ -70,7 +70,7 @@ public class Controleur {
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
-		
+		 
 	} 
 	
 	private void initialize()
