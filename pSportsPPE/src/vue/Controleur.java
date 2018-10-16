@@ -63,7 +63,13 @@ public class Controleur {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Controleur() {
-		comp = new Complexe(5,5,"test");
+		
+		comp = new Complexe(5,2,"test");
+		Arrivee test = new Arrivee(comp,'M');
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
+		comp.entreeUsager(test);
 		
 	} 
 	
