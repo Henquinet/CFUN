@@ -50,6 +50,9 @@ public class Controleur {
 	private final String TITRE_MAIN = "Complexe ";
 	private final String TITRE_FITN = "Infos fitness";
 	private final String TITRE_MUSC = "Info Musculation";
+	private final String NBPD = "Nombre de places occupées : ";
+	private final String NBPL = "Nombre de places libre : ";
+	
 	private Complexe comp;
 	
 	
@@ -67,24 +70,32 @@ public class Controleur {
 	{
 		 l_main.setText(TITRE_MAIN + comp.getNomComplexe());
 		 
-		 
+		 showFitOrMusc(true);
 		 
 	}
+	
+	
+	
+	
 	
 	
 	
 	private void showFitOrMusc(boolean fitn) {
 		if(fitn) {
 			l_fm_t.setText(TITRE_FITN);
-
-			
+			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
+			//l_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
 		}
 		else {
 			l_fm_t.setText(TITRE_MUSC);
+			l_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
+			//l_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
 		}
-		
-		
-		
+	}
+	
+	@FXML
+	private void exit() {
+		System.exit(0);
 	}
 	
 	
