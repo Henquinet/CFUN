@@ -1,4 +1,5 @@
 package vue;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -9,12 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class Controleur {
@@ -69,13 +74,13 @@ public class Controleur {
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
-		
+
+
 	} 
 	@FXML
 	private void initialize()
 	{
 		// l_main.setText(TITRE_MAIN + comp.getNomComplexe());
-	//	 System.out.println("yo");
 		 showFitOrMusc(false);
 		 
 	}
@@ -101,10 +106,8 @@ public class Controleur {
 			etat = comp.etatMuscu();
 		}
 		
-		
-		
+
 		switch(new ChoixCouleur(etat).getCouleur()) {
-		
 			case vert:
 				c_color.fillProperty().set(Paint.valueOf("green"));
 				break;
@@ -114,13 +117,26 @@ public class Controleur {
 			case rouge:
 				c_color.fillProperty().set(Paint.valueOf("red"));
 				break;
-		
 		}
-		
-		
-		
 	}
 	
+	
+	@FXML
+	private void openWindow()
+	{
+		try {
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/vue/view.fxml"));
+
+		    primaryStage.setScene(new Scene(root));
+		    primaryStage.setTitle("CFUN");
+		    primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
+		
 	@FXML
 	private void exit() {
 		System.exit(0);
