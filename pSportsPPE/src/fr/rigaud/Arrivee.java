@@ -101,6 +101,12 @@ public class Arrivee {
     /// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
+    /*
+     * methode qui calcule et retourne le prix de la séance en fonction de la durée entre l'entrée et la sortie de la salle
+     * 
+     * @param duree la durée d'utilisation de la salle (entre l'entée et la sortie)
+     * @return cout le cout de la séance en fonction de la durée
+     */
     public double calculPrix(long duree) {
         double cout = 0;
         
@@ -114,7 +120,7 @@ public class Arrivee {
                     // cout fixe d'une heure
                     cout = 1;
                     duree -= 60;
-                    // + tous les 1/4 h commencÃ©s
+                    // + tous les 1/4 h commencées
                     long nbquarts, reste;
                     nbquarts = duree / 15;
                     reste = duree % 15;
@@ -128,7 +134,12 @@ public class Arrivee {
         return cout;
     }
     
-    
+    /*
+     * méthode qui retourne le montant à payer pour la séance à la salle de muscu ou de fitness (en fonction de l'utilisation)
+     * en utlisant la méthode calculPrix()
+     * 
+     * @return cout le cout de la séance en fonction de la durée
+     */
     public double getMontant() {
         double cout = 0;
 
