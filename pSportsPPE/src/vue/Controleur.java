@@ -21,7 +21,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-// TEST GITHUB
 
 public class Controleur {
 	// Main------------------------------------------------------------
@@ -82,7 +81,7 @@ public class Controleur {
 	private void initialize()
 	{
 		// l_main.setText(TITRE_MAIN + comp.getNomComplexe());
-		 showFitOrMusc(false);
+		 showFitOrMusc(true);
 		 
 	}
 	
