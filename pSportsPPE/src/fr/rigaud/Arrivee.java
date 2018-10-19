@@ -4,142 +4,158 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class Arrivee {
 
-	private static int numeroSortie = 0;
-	private int numeroArrivee;
-	private char choixSport;
-	private long horaireArrivee;
-	private Calendar hDep; //heure Départ
-	private Complexe complexe;
+    private static int numeroSortie = 0;
+    private int numeroArrivee;
+    private char choixSport;
+    private long horaireArrivee;
+    private Calendar hDep; //heure Départ
+    private Complexe complexe;
 
-	
+    
 
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	public Arrivee(final Complexe complexe, final char choixSport) {
-		this.horaireArrivee = Calendar.getInstance().getTimeInMillis();
-		this.choixSport = choixSport;
-		this.complexe = complexe;
-		this.hDep = null;
-	}
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    /*
+     * Constructeur de la classe Arrivee
+     * 
+     * @param complexe le complexe
+     * @param choixSport le choix du sport (muscu ou fit)
+     */
+    public Arrivee(final Complexe complexe, final char choixSport) {
+        this.horaireArrivee = Calendar.getInstance().getTimeInMillis();
+        this.choixSport = choixSport;
+        this.complexe = complexe;
+        this.hDep = null;
+    }
 
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public String afficheBillet() {
-		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Billet d'entrée n° : ";
-		final String MSGDATE = "Date : ";
-		final String MSGHEURE = "Heure : ";
+    /*
+     * methode qui construit le billet d'entrée de la salle de fitness ou de muscu
+     * 
+     * @return leBillet le billet d'entrée de la salle
+     */
+    public String afficheBillet() {
+        final String MSGNOM = "Complexe ";
+        final String MSGNUM = "Billet d'entrée n° : ";
+        final String MSGDATE = "Date : ";
+        final String MSGHEURE = "Heure : ";
 
-		String leBillet;
-		leBillet = MSGNOM + this.getComplexe().getNomComplexe() + "\t";
-		leBillet += MSGNUM + this.numeroArrivee + "\n";
+        String leBillet;
+        leBillet = MSGNOM + this.getComplexe().getNomComplexe() + "\t";
+        leBillet += MSGNUM + this.numeroArrivee + "\n";
 
-		Calendar leCal = Calendar.getInstance();
-		leCal.setTimeInMillis(this.horaireArrivee);
-		Date laDate = leCal.getTime();
-		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
-		leBillet += MSGDATE + leJour.format(laDate) + "\n";
-		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
-		leBillet += MSGHEURE + lHeure.format(laDate) + "\n";
+        Calendar leCal = Calendar.getInstance();
+        leCal.setTimeInMillis(this.horaireArrivee);
+        Date laDate = leCal.getTime();
+        SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
+        leBillet += MSGDATE + leJour.format(laDate) + "\n";
+        SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
+        leBillet += MSGHEURE + lHeure.format(laDate) + "\n";
 
-		return leBillet;
-	}
+        return leBillet;
+    }
 
-	public String afficheTicket() {
-		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Ticket de sortie n° : ";
-		final String MSGDATE = "Date : ";
-		final String MSGHEURE = "Heure : ";
-		final String MSGCOUT = "Montant : ";
+    /*
+     * methode qui construit le ticket de sortie de la salle
+     * 
+     * @return leTicket le ticket de sortie de la salle
+     */
+    public String afficheTicket() {
+        final String MSGNOM = "Complexe ";
+        final String MSGNUM = "Ticket de sortie n° : ";
+        final String MSGDATE = "Date : ";
+        final String MSGHEURE = "Heure : ";
+        final String MSGCOUT = "Montant : ";
 
-		String leTicket;
+        String leTicket;
 
-		leTicket = MSGNOM + this.getComplexe().getNomComplexe() + "\t";
-		leTicket += MSGNUM + ++Arrivee.numeroSortie + "\n";
+        leTicket = MSGNOM + this.getComplexe().getNomComplexe() + "\t";
+        leTicket += MSGNUM + ++Arrivee.numeroSortie + "\n";
 
-		this.hDep = Calendar.getInstance();
-		
-		//on simule ici une sortie 32 mn plus tard
-        //hDep.add(Calendar.MINUTE, +32);
-        hDep.add(Calendar.MINUTE, +8);
-		
-		Date laDate = hDep.getTime();
-		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
-		leTicket += MSGDATE + leJour.format(laDate) + "\n";
-		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
-		leTicket += MSGHEURE + lHeure.format(laDate) + "\n";
-		leTicket += MSGCOUT + this.getMontant() + " â‚¬\n";
+        this.hDep = Calendar.getInstance();
+        
+        Date laDate = hDep.getTime();
+        SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
+        leTicket += MSGDATE + leJour.format(laDate) + "\n";
+        SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
+        leTicket += MSGHEURE + lHeure.format(laDate) + "\n";
+        leTicket += MSGCOUT + this.getMontant() + " â‚¬\n";
 
-		return leTicket;
-	}
+        return leTicket;
+    }
 
-	
+    
 
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	public double calculPrix(long duree) {
-		double cout = 0;
-		if (duree <= 30 && duree > 15) {
-			cout = 0.5;
-		} else {
-			if (duree < 60 && duree >30) {
-				cout = 1;
-			} else {
-				// cout fixe d'une heure
-				cout = 1;
-				duree -= 60;
-				// + tous les 1/4 h commencÃ©s
-				long nbquarts, reste;
-				nbquarts = duree / 15;
-				reste = duree % 15;
-				if (reste != 0)
-					nbquarts++;
-				cout += nbquarts * 0.5;
-			}
-		}
-	
-		return cout;
-	}
-	
-	
-	public double getMontant() {
-		double cout = 0;
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public double calculPrix(long duree) {
+        double cout = 0;
+        
+        if (duree != 0) {
+            if (duree <= 30 && duree > 15) {
+                cout = 0.5;
+            } else {
+                if (duree < 60 && duree >30) {
+                    cout = 1;
+                } else {
+                    // cout fixe d'une heure
+                    cout = 1;
+                    duree -= 60;
+                    // + tous les 1/4 h commencÃ©s
+                    long nbquarts, reste;
+                    nbquarts = duree / 15;
+                    reste = duree % 15;
+                    if (reste != 0)
+                        nbquarts++;
+                    cout += nbquarts * 0.5;
+                }
+            }
+        }
+    
+        return cout;
+    }
+    
+    
+    public double getMontant() {
+        double cout = 0;
 
-		if (hDep != null) {
-			// on passe des ms en mn
-			long dep = hDep.getTimeInMillis() / (1000 * 60);
-			long arr = this.horaireArrivee / (1000 * 60);
-			long duree =  dep - arr;
-			cout = calculPrix(duree);
-		}
-		return cout;
-	}
-	
+        if (hDep != null) {
+            // on passe des ms en mn
+            long dep = hDep.getTimeInMillis() / (1000 * 60);
+            long arr = this.horaireArrivee / (1000 * 60);
+            long duree =  dep - arr;
+            cout = calculPrix(duree);
+        }
+        return cout;
+    }
+    
 
-	public Complexe getComplexe() {
-		return this.complexe;
-	}
+    public Complexe getComplexe() {
+        return this.complexe;
+    }
 
-	public void setNumeroArrivee(int numero) {
-		numeroArrivee = numero;
-	}
-	
-	public int getNumeroArrivee() {
-		return numeroArrivee;
-	}
-	
-	public char getChoixSport() {
-		return choixSport;
-	}
+    public void setNumeroArrivee(int numero) {
+        numeroArrivee = numero;
+    }
+    
+    public int getNumeroArrivee() {
+        return numeroArrivee;
+    }
+    
+    public char getChoixSport() {
+        return choixSport;
+    }
 }
