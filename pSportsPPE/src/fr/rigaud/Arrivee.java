@@ -41,7 +41,7 @@ public class Arrivee {
 		String leBillet;
 		leBillet = MSGNOM + this.getComplexe().getNomComplexe() + "\t";
 		leBillet += MSGNUM + this.numeroArrivee + "\n";
-
+		
 		Calendar leCal = Calendar.getInstance();
 		leCal.setTimeInMillis(this.horaireArrivee);
 		Date laDate = leCal.getTime();

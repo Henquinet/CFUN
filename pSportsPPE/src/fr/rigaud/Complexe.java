@@ -15,7 +15,7 @@ public class Complexe {
 	private int nbPlacesOccupeesMuscu;
 	private String nomComplexe;
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
-	
+	List<Equipement> equipements = new ArrayList<Equipement>();
 
 	
 	
@@ -23,12 +23,24 @@ public class Complexe {
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+
 	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit, final String nomComplexe) {
 		this.nbTotalPlacesFit = nbTotalPlacesFit;
 		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
 		this.nomComplexe = nomComplexe;
 		this.nbPlacesOccupeesFit = 0;
 		this.nbPlacesOccupeesMuscu = 0;
+		for(int i = 0; i < nbTotalPlacesMuscu; i++) {
+			equipements.add(new Equipement(true));
+		}
+		for(int i = 0; i < nbTotalPlacesFit; i++) {
+			equipements.add(new Equipement(false));
+		}
+		
+		
+		
+		
 	}
 
 
@@ -44,20 +56,27 @@ public class Complexe {
 		ok = false;
 		choix = uneArrivee.getChoixSport();
 		if (choix == 'F') {
-			if (this.etatFit() != 1) {
+			if (this.etatFit() != 1.0) {
 				Complexe.setNumeroActuel();
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
-				this.nouvelUsagerFitness();
-				ok = true;
+				if(rechercheEquipement(choix == 'M',uneArrivee)) {
+					this.nouvelUsagerFitness();
+					ok = true;
+				}
+
 			}
 		} else {
 			if (this.etatMuscu() != 1.0) {
 				Complexe.setNumeroActuel();
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
-				this.nouvelUsagerMusculation();
-				ok = true;
+				if(rechercheEquipement(choix == 'M',uneArrivee)) {
+					this.nouvelUsagerMusculation();
+					ok = true;
+				}
+				
+				
 			}
 		}
 		return ok;
@@ -65,6 +84,7 @@ public class Complexe {
 
 	public Arrivee sortieUsager(final int entree) {
 		Arrivee leDepart = recherche(entree);
+		sortieEquipement(leDepart);
 		if (leDepart.getChoixSport() == 'F') {
 			this.oterUsagerFitness();
 		} else {
@@ -120,7 +140,44 @@ public class Complexe {
 		return leDoc;
 	}
 
-
+	
+	public void sortieEquipement(Arrivee ar) {
+		int cpt = 0;
+		boolean find = false;
+		while(!find && cpt != equipements.size()) {
+			Equipement tmp = equipements.get(cpt);
+			if(tmp.getArrivee() != null && tmp.getArrivee().equals(ar) && tmp.isOccupe()) {
+				tmp.setArrivee(null);
+				tmp.setOccupe(false);
+			}
+			else {
+				cpt++;
+			}
+		}
+	}
+	
+	/**
+	 * Retourne True si un équipement a été trouvé (passe Equipement.IsOccupe à True)
+	 * @param musc
+	 * @return
+	 */
+	public boolean rechercheEquipement(boolean musc,Arrivee arr) {
+		int cpt = 0;
+		boolean find = false;
+		while(!find && cpt != equipements.size()) {
+			Equipement tmp = equipements.get(cpt);
+			if(tmp.isMuscu() == musc && !tmp.isOccupe() && !tmp.isDefectueux()) {
+				tmp.setOccupe(true);
+				tmp.setArrivee(arr);
+				find = true;
+			}
+			else {
+				cpt++;
+			}
+		}
+		return find;
+	}
+	
 
 	public void nouvelUsagerFitness() {
 		nbPlacesOccupeesFit++;
@@ -152,6 +209,9 @@ public class Complexe {
 	}
 
 	
+	public Equipement getEquipement(int indice) {
+		return equipements.get(indice);
+	}
 	
 		
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +238,11 @@ public class Complexe {
 		return nomComplexe;
 	}
 	
-	
+	public List<Equipement> getEquipements() {
+		return equipements;
+	}
+
+
 
 	
 		
