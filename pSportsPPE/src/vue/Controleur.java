@@ -129,7 +129,6 @@ public class Controleur {
 		try {
 			Stage primaryStage = new Stage();
 			Parent root = FXMLLoader.load(getClass().getResource("/vue/view.fxml"));
-
 		    primaryStage.setScene(new Scene(root));
 		    primaryStage.setTitle("CFUN");
 		    primaryStage.show();
@@ -138,8 +137,7 @@ public class Controleur {
 		}
 	}
 		
-	
-	
+
 	@FXML
 	private void exit() {
 		System.exit(0);
