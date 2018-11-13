@@ -26,10 +26,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Controleur {
+public class ControleurGestionnaire {
 	// Main------------------------------------------------------------
-	@FXML
-	private MenuBar menu;
 	@FXML
 	private TabPane tabp;
 	
@@ -81,17 +79,13 @@ public class Controleur {
     @FXML
     private Circle c_fit_color;
 	
-	//Connexion--------------------------------------------------------
-	@FXML
-	private TextField tf_login;
-	@FXML
-	private TextField tf_pass;
-	@FXML
-	private Button b_connection;
+    //Onglets-----------------------------------------------
 	@FXML
     private Tab tab_fit;
 	@FXML
     private Tab tab_muscu;
+    @FXML
+    private Tab tab_quitter;
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -112,7 +106,7 @@ public class Controleur {
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Controleur() {
+	public ControleurGestionnaire() {
 		comp = new Complexe(5,4,"test");
 		Arrivee test = new Arrivee(comp,'M');
 		comp.entreeUsager(test);
@@ -145,11 +139,13 @@ public class Controleur {
 	private void showFitOrMusc(boolean fitn) {
 		double etat = 0;
 		double tauxOcc;
+		double totalPlace;
 		String date = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(new Date());
 		String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
 		
 		if(fitn) {
-		    //tauxOcc = ;
+		    totalPlace = comp.getNbPlacesRestantesFit() + comp.getNbPlacesOccupeesFit();
+		    tauxOcc = comp.getNbPlacesOccupeesFit() / totalPlace * 100;
 		    
 		    l_fit_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
 		    l_fit_fm_date.setText(DATE + date);
@@ -173,7 +169,9 @@ public class Controleur {
 			}
 		}
 		else {
-		    //tauxOcc = ;
+		    totalPlace = comp.getNbPlacesRestantesMuscu() + comp.getNbPlacesOccupeesMuscu();
+            tauxOcc = comp.getNbPlacesOccupeesMuscu() / totalPlace * 100;
+            
 		    l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
             l_muscu_fm_date.setText(DATE + date);
             l_muscu_fm_heure.setText(HEURE + heure);
