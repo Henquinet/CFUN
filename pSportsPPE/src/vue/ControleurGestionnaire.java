@@ -113,9 +113,8 @@ public class ControleurGestionnaire {
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
 		comp.entreeUsager(test);
-
-
 	} 
+	
 	@FXML
 	private void initialize()
 	{
@@ -194,22 +193,6 @@ public class ControleurGestionnaire {
 			}
 		}
 	}
-	
-	
-	@FXML
-	private void openWindow() {
-		try {
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/vue/view.fxml"));
-
-		    primaryStage.setScene(new Scene(root));
-		    primaryStage.setTitle("CFUN");
-		    primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-		
 		
 	@FXML
 	private void exit() {

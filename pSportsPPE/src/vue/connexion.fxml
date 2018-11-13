@@ -5,16 +5,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurConnexion">
    <children>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="252.0" prefWidth="500.0">
+      <AnchorPane layoutX="3.0" minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="587.0">
          <children>
-            <Label layoutX="56.0" layoutY="130.0" text="Mot de passe :" />
-            <Label layoutX="65.0" layoutY="81.0" text="Identifiant :" />
-            <Button layoutX="209.0" layoutY="198.0" mnemonicParsing="false" onAction="#openWindow" style="-fx-background-color: darkgrey;" text="Se connecter" />
-            <TextField layoutX="152.0" layoutY="77.0" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="77.0" />
-            <TextField layoutX="145.0" layoutY="126.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
+            <Label layoutX="58.0" layoutY="110.0" text="Mot de passe :" />
+            <Label layoutX="67.0" layoutY="61.0" text="Identifiant :" />
+            <Button fx:id="b_connection" layoutX="269.0" layoutY="203.0" mnemonicParsing="false" onAction="#connexion" style="-fx-background-color: darkgrey;" text="Se connecter" />
+            <TextField fx:id="tf_pass" layoutX="154.0" layoutY="106.0" prefHeight="25.0" prefWidth="199.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="234.0" />
+            <Label fx:id="l_noMDP" layoutX="367.0" layoutY="110.0" text="erreur noMDP" />
+            <Label fx:id="l_noID" layoutX="367.0" layoutY="61.0" text="erreur noID" />
+            <Label fx:id="l_Wrong" layoutX="154.0" layoutY="163.0" text="Erreur wrong" />
+            <TextField fx:id="tf_login" layoutX="154.0" layoutY="57.0" prefHeight="25.0" prefWidth="199.0" />
          </children>
       </AnchorPane>
    </children>
