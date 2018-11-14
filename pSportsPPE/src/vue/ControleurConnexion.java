@@ -77,6 +77,9 @@ public class ControleurConnexion {
     @FXML
     private void openWindow() {
         try {
+            Stage stage = (Stage) b_connection.getScene().getWindow();
+            stage.close();
+            
             Stage primaryStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/vue/gestionnaire.fxml"));
 

@@ -151,11 +151,7 @@ public class ControleurGestionnaire {
 			l_fit_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
 			l_fit_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
 			l_fit_fm_taux.setText(TXOCC + comp.etatFit() + "%");
-			
-			
-			c_fit_color.fillProperty().set(Paint.valueOf(comp.couleurFit()));
-			
-			/*etat = comp.etatFit();
+			etat = comp.etatFit();
 			
 			switch(new ChoixCouleur(etat).getCouleur()) {
             case vert:
@@ -167,7 +163,7 @@ public class ControleurGestionnaire {
             case rouge:
                 c_fit_color.fillProperty().set(Paint.valueOf("red"));
                 break;
-			} */
+			} 
 		}
 		else {
 		    
@@ -179,10 +175,6 @@ public class ControleurGestionnaire {
 			l_muscu_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
 			l_muscu_fm_taux.setText(TXOCC + comp.etatMuscu() + "%");
 			etat = comp.etatMuscu();
-			
-			c_muscu_color.fillProperty().set(Paint.valueOf(comp.couleurMuscu()));
-			
-			/*etat = comp.etatFit();
 
 			switch(new ChoixCouleur(etat).getCouleur()) {
             case vert:
@@ -194,7 +186,7 @@ public class ControleurGestionnaire {
             case rouge:
                 c_muscu_color.fillProperty().set(Paint.valueOf("red"));
                 break;
-			} */
+			} 
 		}
 	}
 		

@@ -150,17 +150,6 @@ public class Complexe {
 		return (this.getNbPlacesOccupeesMuscu()) * 1.0
 				/ this.nbTotalPlacesMuscu;
 	}
-	
-	public String couleurMuscu() {
-        ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
-        return choixCouleur.getCouleur().toString();
-    }
-    
-    
-    public String couleurFit() {
-        ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
-        return choixCouleur.getCouleur().toString();
-    }   
 
 	
 	
@@ -206,5 +195,14 @@ public class Complexe {
 	}
 	
 	
+	private String couleurMuscu() {
+		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
+		return choixCouleur.getCouleur().toString();
+	}
 	
+	
+	private String couleurFit() {
+		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
+		return choixCouleur.getCouleur().toString();
+	}	
 }
