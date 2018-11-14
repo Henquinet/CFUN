@@ -61,7 +61,7 @@ public class ControleurConnexion {
         if (tf_login.getText().length() == 0) {
             l_noID.setText(ERRNOID);
         } else {
-            if (pf_pass.getText().length() == 0) {
+            if (pf_pass.getText().length() == 0 ) {
                 l_noMDP.setText(ERRNOMDP);
             } else {
                 if (tf_login.getText().equals(LOGIN) && pf_pass.getText().equals(MDP)) {
