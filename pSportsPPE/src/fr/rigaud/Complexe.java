@@ -87,8 +87,8 @@ public class Complexe {
 		final String MSGHEURE = "heure : ";
 		final String MSGDISPMUSCU = "Places disponibles M : ";
 		final String MSGDISPFIT = "Places disponibles F : ";
-		final String MSGOCCMUSCU = "Places occupées M : ";
-		final String MSGOCCFIT = "Places occupées F : ";
+		final String MSGOCCMUSCU = "Places occupï¿½es M : ";
+		final String MSGOCCFIT = "Places occupï¿½es F : ";
 		final String MSGTXMUSCU = "Taux occ. M : ";
 		final String MSGTXFIT = "Taux occ. F : ";
 		final String MSGCOULMUSCU = "Couleur M : ";
@@ -150,6 +150,17 @@ public class Complexe {
 		return (this.getNbPlacesOccupeesMuscu()) * 1.0
 				/ this.nbTotalPlacesMuscu;
 	}
+	
+	public String couleurMuscu() {
+        ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
+        return choixCouleur.getCouleur().toString();
+    }
+    
+    
+    public String couleurFit() {
+        ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
+        return choixCouleur.getCouleur().toString();
+    }   
 
 	
 	
@@ -195,14 +206,5 @@ public class Complexe {
 	}
 	
 	
-	private String couleurMuscu() {
-		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatMuscu());
-		return choixCouleur.getCouleur().toString();
-	}
 	
-	
-	private String couleurFit() {
-		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
-		return choixCouleur.getCouleur().toString();
-	}	
 }
