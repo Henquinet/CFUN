@@ -6,17 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ControleurConnexion {
 
-    //TextField--------------------------------------------------------
+    //TextField + PasswordField--------------------------------------------------------
     @FXML
     private TextField tf_login;
     @FXML
-    private TextField tf_pass;
+    private PasswordField pf_pass;
 
     //Bouton--------------------------------------------------------
     @FXML
@@ -51,7 +52,7 @@ public class ControleurConnexion {
         final String LOGIN = "Burgaud";
         final String MDP = "123";
         
-        //effacement des messages d'erreurs a 0
+        //remise a 0 des messages d'erreurs
         l_noID.setText("");
         l_noMDP.setText("");
         l_Wrong.setText("");
@@ -60,10 +61,10 @@ public class ControleurConnexion {
         if (tf_login.getText().length() == 0) {
             l_noID.setText(ERRNOID);
         } else {
-            if (tf_pass.getText().length() == 0) {
+            if (pf_pass.getText().length() == 0) {
                 l_noMDP.setText(ERRNOMDP);
             } else {
-                if (tf_login.getText().equals(LOGIN) && tf_pass.getText().equals(MDP)) {
+                if (tf_login.getText().equals(LOGIN) && pf_pass.getText().equals(MDP)) {
                     openWindow();
                 } else {
                     l_Wrong.setText(ERRLOG);

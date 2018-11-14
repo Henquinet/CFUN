@@ -94,7 +94,7 @@ public class ControleurGestionnaire {
 	private final String HEURE = "heure : ";
 	private final String TITRE_FITN = "Infos Fitness";
 	private final String TITRE_MUSC = "Infos Musculation";
-	private final String NBPD = "Nombre de places occupées : ";
+	private final String NBPD = "Nombre de places occupÃ©es : ";
 	private final String NBPL = "Nombre de places libre : ";
 	private final String TXOCC = "Taux occ. : ";
 	
@@ -143,8 +143,6 @@ public class ControleurGestionnaire {
 		String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
 		
 		if(fitn) {
-		    totalPlace = comp.getNbPlacesRestantesFit() + comp.getNbPlacesOccupeesFit();
-		    tauxOcc = comp.getNbPlacesOccupeesFit() / totalPlace * 100;
 		    
 		    l_fit_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
 		    l_fit_fm_date.setText(DATE + date);
@@ -152,7 +150,7 @@ public class ControleurGestionnaire {
 			l_fit_fm_t.setText(TITRE_FITN);
 			l_fit_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
 			l_fit_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
-			l_fit_fm_taux.setText(TXOCC + tauxOcc);
+			l_fit_fm_taux.setText(TXOCC + comp.etatFit() + "%");
 			etat = comp.etatFit();
 			
 			switch(new ChoixCouleur(etat).getCouleur()) {
@@ -168,16 +166,14 @@ public class ControleurGestionnaire {
 			}
 		}
 		else {
-		    totalPlace = comp.getNbPlacesRestantesMuscu() + comp.getNbPlacesOccupeesMuscu();
-            tauxOcc = comp.getNbPlacesOccupeesMuscu() / totalPlace * 100;
-            
+		    
 		    l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
             l_muscu_fm_date.setText(DATE + date);
             l_muscu_fm_heure.setText(HEURE + heure);
 			l_muscu_fm_t.setText(TITRE_MUSC);
 			l_muscu_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
 			l_muscu_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
-			l_muscu_fm_taux.setText(TXOCC + tauxOcc);
+			l_muscu_fm_taux.setText(TXOCC + comp.etatMuscu() + "%");
 			etat = comp.etatMuscu();
 			
 			switch(new ChoixCouleur(etat).getCouleur()) {
