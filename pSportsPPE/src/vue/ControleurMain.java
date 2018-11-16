@@ -1,5 +1,12 @@
 package vue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import fr.rigaud.Arrivee;
+import fr.rigaud.ChoixCouleur;
+import fr.rigaud.Complexe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,35 +16,64 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class ControleurMain {
     
     // Menu-------------------------------------------------------------
     @FXML
-    MenuBar menuBar;
+    private MenuBar menuBar;
     @FXML
-    MenuItem mi_visiteur;
+    private MenuItem mi_visiteur;
     @FXML
-    MenuItem mi_gestionnaire;
+    private MenuItem mi_gestionnaire;
     @FXML
-    MenuItem mi_rester;
+    private MenuItem mi_rester;
     @FXML
-    MenuItem mi_quitter;
+    private MenuItem mi_quitter;
     // TabPane----------------------------------------------------------
     @FXML
-    TabPane tabPane;
+    private TabPane tabPane;
     @FXML
-    Tab t_etatComplexe;
+    private Tab tab_fit;
     @FXML
-    Tab t_billetEntree;
+    private Tab tab_muscu;
     @FXML
-    Tab t_ticketsortie;
+    private Tab t_billetEntree;
+    @FXML
+    private Tab t_ticketsortie;
     // Label------------------------------------------------------------
     @FXML
-    Label l_accueil;
+    private Label l_muscu_fm_comp;
+    @FXML
+    private Label l_muscu_fm_t;
+    @FXML
+    private Circle c_muscu_color;
     
-    public ControleurMain() {}
+    @FXML
+    private Label l_fit_fm_comp;
+    @FXML
+    private Label l_fit_fm_t;
+    @FXML
+    private Circle c_fit_color;
+    
+    private final String TITRE_MAIN = "Etat du Complexe : ";
+    private final String TITRE_FITN = "Infos Fitness";
+    private final String TITRE_MUSC = "Infos Musculation";
+    
+    private Complexe comp;
+    
+    
+    public ControleurMain() {
+        comp = new Complexe(5,4,"test");
+        Arrivee test = new Arrivee(comp,'M');
+        comp.entreeUsager(test);
+        comp.entreeUsager(test);
+        comp.entreeUsager(test);
+        comp.entreeUsager(test);
+    }
     
     @FXML
     private void initialize() {
@@ -46,8 +82,57 @@ public class ControleurMain {
 
     @FXML
     private void toCustomer() {
-        l_accueil.setVisible(false);
         tabPane.setVisible(true);
+    }
+    
+    @FXML
+    private void changeToMuscu() {
+        showFitOrMusc(false);
+    }
+    
+    @FXML
+    private void changeToFit() {
+        showFitOrMusc(true);
+    }
+
+    private void showFitOrMusc(boolean fitn) {
+        double etat = 0;
+        
+        if(fitn) {
+            l_fit_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
+            l_fit_fm_t.setText(TITRE_FITN);
+            etat = comp.etatFit();
+            
+            switch(new ChoixCouleur(etat).getCouleur()) {
+            case vert:
+                c_fit_color.fillProperty().set(Paint.valueOf("green"));
+                break;
+            case orange:
+                c_fit_color.fillProperty().set(Paint.valueOf("orange"));
+                break;
+            case rouge:
+                c_fit_color.fillProperty().set(Paint.valueOf("red"));
+                break;
+            } 
+        }
+        else {
+            
+            l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
+            l_muscu_fm_t.setText(TITRE_MUSC);
+            etat = comp.etatMuscu();
+
+            switch(new ChoixCouleur(etat).getCouleur()) {
+            case vert:
+                c_muscu_color.fillProperty().set(Paint.valueOf("green"));
+                break;
+            case orange:
+                c_muscu_color.fillProperty().set(Paint.valueOf("orange"));
+                break;
+            case rouge:
+                c_muscu_color.fillProperty().set(Paint.valueOf("red"));
+                break;
+            }
+        }
     }
     
     @FXML

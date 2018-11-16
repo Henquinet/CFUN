@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="353.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurMain">
    <children>
@@ -32,19 +31,31 @@
       </MenuBar>
       <TabPane fx:id="tabPane" layoutY="26.0" prefHeight="321.0" prefWidth="566.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="t_etatComplexe" style="-fx-background-color: grey;" text="Etat complexe" />
+            <Tab fx:id="tab_muscu" onSelectionChanged="#changeToMuscu" style="-fx-background-color: grey;" text="Infos Muscu">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="l_muscu_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
+                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="277.0" layoutY="160.0" radius="57.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="103.0" />
+                        <Label fx:id="l_muscu_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tab_fit" onSelectionChanged="#changeToFit" style="-fx-background-color: grey;" text="Infos Fit">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="l_fit_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
+                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="277.0" layoutY="160.0" radius="57.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="103.0" />
+                        <Label fx:id="l_fit_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab fx:id="t_billetEntree" style="-fx-background-color: grey;" text="Entrée" />
             <Tab fx:id="t_ticketsortie" style="-fx-background-color: grey;" text="Sortie" />
         </tabs>
       </TabPane>
-      <Label fx:id="l_accueil" layoutY="24.0" prefHeight="329.0" prefWidth="566.0" text="  Bienvenue au complexe C FUN" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <Circle fill="DODGERBLUE" layoutX="137.0" layoutY="199.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="75.0" />
-      <Circle fill="DODGERBLUE" layoutX="429.0" layoutY="189.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="75.0" />
-      <Label layoutX="69.0" layoutY="101.0" text="Etat de la salle de fitness :" />
-      <Label layoutX="346.0" layoutY="101.0" text="Etat de la salle de musculation :" />
    </children>
 </AnchorPane>

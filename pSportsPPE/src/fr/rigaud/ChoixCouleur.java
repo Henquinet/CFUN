@@ -11,11 +11,11 @@ public class ChoixCouleur {
 	private Couleur couleur;
 
 	public ChoixCouleur(final double etat) {
-		if(etat < 70) {
+		if(etat < 0.7) {
 			couleur = Couleur.vert;
 		}
 		else {
-			if(etat<100) {
+			if(etat<1) {
 				couleur = Couleur.orange;
 			}
 			else {
