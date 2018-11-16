@@ -142,7 +142,7 @@ public class ControleurGestionnaire {
 			l_fit_fm_t.setText(TITRE_FITN);
 			l_fit_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
 			l_fit_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
-			l_fit_fm_taux.setText(TXOCC + comp.etatFit() + "%");
+			l_fit_fm_taux.setText(TXOCC + comp.etatFit()*100 + "%");
 			etat = comp.etatFit();
 			
 			switch(new ChoixCouleur(etat).getCouleur()) {
@@ -165,7 +165,7 @@ public class ControleurGestionnaire {
 			l_muscu_fm_t.setText(TITRE_MUSC);
 			l_muscu_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
 			l_muscu_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
-			l_muscu_fm_taux.setText(TXOCC + comp.etatMuscu() + "%");
+			l_muscu_fm_taux.setText(TXOCC + comp.etatMuscu()*100 + "%");
 			etat = comp.etatMuscu();
 
 			switch(new ChoixCouleur(etat).getCouleur()) {
