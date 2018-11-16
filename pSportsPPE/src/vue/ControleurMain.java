@@ -46,6 +46,8 @@ public class ControleurMain {
     private Tab t_ticketsortie;
     // Label------------------------------------------------------------
     @FXML
+    private Label l_accueil;    
+    @FXML
     private Label l_muscu_fm_comp;
     @FXML
     private Label l_muscu_fm_t;
@@ -83,6 +85,7 @@ public class ControleurMain {
     @FXML
     private void toCustomer() {
         tabPane.setVisible(true);
+        l_accueil.setVisible(false);
     }
     
     @FXML

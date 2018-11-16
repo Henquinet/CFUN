@@ -8,9 +8,15 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="353.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurMain">
    <children>
+      <Label fx:id="l_accueil" layoutY="173.0" prefHeight="60.0" prefWidth="546.0" text="Bienvenue au complexe C FUN" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="143.0">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
       <MenuBar fx:id="menuBar" prefHeight="17.0" prefWidth="566.0">
         <menus>
           <Menu mnemonicParsing="false" text="Visiteur">
