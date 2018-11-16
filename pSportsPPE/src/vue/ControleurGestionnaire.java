@@ -78,6 +78,9 @@ public class ControleurGestionnaire {
     private Label l_fit_fm_taux;
     @FXML
     private Circle c_fit_color;
+    
+    @FXML
+    private Label l_infos;
 	
     //Onglets-----------------------------------------------
 	@FXML
@@ -100,11 +103,6 @@ public class ControleurGestionnaire {
 	
 	private Complexe comp;
 	
-	
-	
-	
-	
-	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ControleurGestionnaire() {
 		comp = new Complexe(5,4,"test");
@@ -116,10 +114,8 @@ public class ControleurGestionnaire {
 	} 
 	
 	@FXML
-	private void initialize()
-	{
-		// l_main.setText(TITRE_MAIN + comp.getNomComplexe());
-		
+	private void initialize() {
+	    l_infos.setText(comp.lesInfos());
 	}
 	
 	@FXML
@@ -131,10 +127,7 @@ public class ControleurGestionnaire {
     private void changeToFit() {
         showFitOrMusc(true);
     }
-	
-	
-	
-	
+
 	private void showFitOrMusc(boolean fitn) {
 		double etat = 0;
 		double tauxOcc;
@@ -143,7 +136,6 @@ public class ControleurGestionnaire {
 		String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
 		
 		if(fitn) {
-		    
 		    l_fit_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
 		    l_fit_fm_date.setText(DATE + date);
 		    l_fit_fm_heure.setText(HEURE + heure);
