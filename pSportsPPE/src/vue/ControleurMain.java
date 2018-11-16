@@ -1,9 +1,5 @@
 package vue;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import fr.rigaud.Arrivee;
 import fr.rigaud.ChoixCouleur;
 import fr.rigaud.Complexe;
