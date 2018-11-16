@@ -11,7 +11,7 @@ public class Arrivee {
     private int numeroArrivee;
     private char choixSport;
     private long horaireArrivee;
-    private Calendar hDep; //heure Départ
+    private Calendar hDep; //heure DÃ©part
     private Complexe complexe;
 
     
@@ -40,13 +40,13 @@ public class Arrivee {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
-     * methode qui construit le billet d'entrée de la salle de fitness ou de muscu
+     * methode qui construit le billet d'entrÃ©e de la salle de fitness ou de muscu
      * 
-     * @return leBillet le billet d'entrée de la salle
+     * @return leBillet le billet d'entrÃ©e de la salle
      */
     public String afficheBillet() {
         final String MSGNOM = "Complexe ";
-        final String MSGNUM = "Billet d'entrée n° : ";
+        final String MSGNUM = "Billet d'entrÃ©e nÃ© : ";
         final String MSGDATE = "Date : ";
         final String MSGHEURE = "Heure : ";
 
@@ -72,7 +72,7 @@ public class Arrivee {
      */
     public String afficheTicket() {
         final String MSGNOM = "Complexe ";
-        final String MSGNUM = "Ticket de sortie n° : ";
+        final String MSGNUM = "Ticket de sortie nÃ© : ";
         final String MSGDATE = "Date : ";
         final String MSGHEURE = "Heure : ";
         final String MSGCOUT = "Montant : ";
@@ -102,15 +102,15 @@ public class Arrivee {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     /*
-     * methode qui calcule et retourne le prix de la séance en fonction de la durée entre l'entrée et la sortie de la salle
+     * methode qui calcule et retourne le prix de la sÃ©ance en fonction de la durÃ©e entre l'entrÃ©e et la sortie de la salle
      * 
-     * @param duree la durée d'utilisation de la salle (entre l'entée et la sortie)
-     * @return cout le cout de la séance en fonction de la durée
+     * @param duree la durÃ©e d'utilisation de la salle (entre l'entÃ©e et la sortie)
+     * @return cout le cout de la sÃ©ance en fonction de la durÃ©e
      */
     public double calculPrix(long duree) {
         double cout = 0;
         
-        if (duree != 0) {
+        if (duree > 15) {
             if (duree <= 30 && duree > 15) {
                 cout = 0.5;
             } else {
@@ -120,7 +120,7 @@ public class Arrivee {
                     // cout fixe d'une heure
                     cout = 1;
                     duree -= 60;
-                    // + tous les 1/4 h commencées
+                    // + tous les 1/4 h commencÃ©es
                     long nbquarts, reste;
                     nbquarts = duree / 15;
                     reste = duree % 15;
@@ -135,10 +135,10 @@ public class Arrivee {
     }
     
     /*
-     * méthode qui retourne le montant à payer pour la séance à la salle de muscu ou de fitness (en fonction de l'utilisation)
-     * en utlisant la méthode calculPrix()
+     * mÃ©thode qui retourne le montant Ã  payer pour la sÃ©ance Ã  la salle de muscu ou de fitness (en fonction de l'utilisation)
+     * en utlisant la mÃ©thode calculPrix()
      * 
-     * @return cout le cout de la séance en fonction de la durée
+     * @return cout le cout de la sÃ©ance en fonction de la durÃ©e
      */
     public double getMontant() {
         double cout = 0;

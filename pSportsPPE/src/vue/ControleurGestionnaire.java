@@ -130,8 +130,6 @@ public class ControleurGestionnaire {
 
 	private void showFitOrMusc(boolean fitn) {
 		double etat = 0;
-		double tauxOcc;
-		double totalPlace;
 		String date = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(new Date());
 		String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
 		
