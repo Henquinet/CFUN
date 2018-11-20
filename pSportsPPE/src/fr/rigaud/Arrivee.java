@@ -79,7 +79,7 @@ public class Arrivee {
 		try {
 			barcode.drawBarcode("Java Graphics2D object");
 			
-			// Generate EAN13 barcode & encode into GIF format
+ 			// Generate EAN13 barcode & encode into GIF format
 			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
 			
 			
