@@ -94,7 +94,9 @@ public class ControleurGestionnaire extends ControleurCFun {
 	} 
 	
 	@FXML
-	private void initialize() {
+	public void initialize() {
+	    super.initialize();
+	    
 	    l_infos.setText(comp.lesInfos());
 	}
 	
@@ -134,8 +136,7 @@ public class ControleurGestionnaire extends ControleurCFun {
                 c_fit_color.fillProperty().set(Paint.valueOf("red"));
                 break;
 			} 
-		}
-		else {
+		} else {
 		    
 		    l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
             l_muscu_fm_date.setText(DATE + date);
@@ -158,6 +159,5 @@ public class ControleurGestionnaire extends ControleurCFun {
                 break;
 			} 
 		}
-	}
-	
+	}	
 }

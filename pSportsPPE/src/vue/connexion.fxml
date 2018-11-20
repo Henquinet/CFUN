@@ -25,21 +25,6 @@
       </AnchorPane>
       <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Visiteur">
-               <items>
-                  <MenuItem fx:id="mi_gestionnaire" mnemonicParsing="false" onAction="#openVueVisiteur" text="Accueil" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Gestionnaire">
-               <items>
-                  <MenuItem fx:id="mi_visiteur" mnemonicParsing="false" text="outil gestionnaire" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Quitter">
-               <items>
-                  <MenuItem fx:id="mi_quitter" mnemonicParsing="false" onAction="#exit" text="Quitter" />
-               </items>
-            </Menu>
          </menus>
       </MenuBar>
    </children>

@@ -8,8 +8,10 @@ public class ControleurMain extends ControleurCFun {
     private Label l_bienvenue;
     
     @FXML
-    private void initialize() {
+    public void initialize() {
         String MSG_BIENVENUE = "Bienvenue au complexe CFUN";
+        
+        super.initialize();
         
         l_bienvenue.setText(MSG_BIENVENUE);
     }

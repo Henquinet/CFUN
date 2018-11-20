@@ -36,7 +36,9 @@ public class ControleurConnexion extends ControleurCFun {
     public ControleurConnexion() {}
     
     @FXML
-    private void initialize() {
+    public void initialize() {
+        super.initialize();
+        
         l_noID.setText("");
         l_noMDP.setText("");
         l_Wrong.setText("");

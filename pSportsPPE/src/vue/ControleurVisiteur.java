@@ -3,17 +3,12 @@ package vue;
 import fr.rigaud.Arrivee;
 import fr.rigaud.ChoixCouleur;
 import fr.rigaud.Complexe;
-import fr.rigaud.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 public class ControleurVisiteur extends ControleurCFun{
     
@@ -58,7 +53,9 @@ public class ControleurVisiteur extends ControleurCFun{
     }
     
     @FXML
-    private void initialize() {}
+    public void initialize() {
+        super.initialize();
+    }
 
     @FXML
     private void toCustomer() {
@@ -93,9 +90,7 @@ public class ControleurVisiteur extends ControleurCFun{
                 c_fit_color.fillProperty().set(Paint.valueOf("red"));
                 break;
             } 
-        }
-        else {
-            
+        } else {
             l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
             l_muscu_fm_t.setText(TITRE_MUSC);
             etat = comp.etatMuscu();
