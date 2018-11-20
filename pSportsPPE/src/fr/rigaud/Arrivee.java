@@ -4,37 +4,41 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.onbarcode.barcode.EAN13;
+
 public class Arrivee {
 
 	private static int numeroSortie = 0;
 	private int numeroArrivee;
 	private char choixSport;
 	private long horaireArrivee;
-	private Calendar hDep; //heure Départ
+	private Calendar hDep; //heure Dï¿½part
+	private Calendar hAr;
 	private Complexe complexe;
-
 	
-
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	
 	public Arrivee(final Complexe complexe, final char choixSport) {
 		this.horaireArrivee = Calendar.getInstance().getTimeInMillis();
 		this.choixSport = choixSport;
 		this.complexe = complexe;
 		this.hDep = null;
+		this.hAr = Calendar.getInstance();
 	}
 
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
+	//EntrÃ©e
 	public String afficheBillet() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Billet d'entrée n° : ";
+		final String MSGNUM = "Billet d'entrï¿½e nï¿½ : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 
@@ -49,13 +53,62 @@ public class Arrivee {
 		leBillet += MSGDATE + leJour.format(laDate) + "\n";
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		leBillet += MSGHEURE + lHeure.format(laDate) + "\n";
-
+		genBarcode();
 		return leBillet;
 	}
 
+	
+	
+	private void genBarcode() {
+		EAN13 barcode = new EAN13();
+		String data = format(numeroArrivee);
+		
+		data += format(hAr.get(Calendar.DAY_OF_MONTH));
+		data += format(hAr.get(Calendar.MONTH)+1);
+		data += format(hAr.get(Calendar.YEAR));
+		
+		data += format(hAr.get(Calendar.HOUR));
+		data += format(hAr.get(Calendar.MINUTE));
+		
+		System.out.println(data + " : " + data.length());
+		barcode.setData(data); 
+		barcode.setAddCheckSum(true);
+		barcode.setShowCheckSumChar(true);
+		
+		// Generate EAN13 barcode & print into Graphics2D object
+		try {
+			barcode.drawBarcode("Java Graphics2D object");
+			
+			// Generate EAN13 barcode & encode into GIF format
+			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	private String format(int nb) {
+		String ret ="";
+		if(nb < 10) {
+			ret = "0";
+		}
+		else if(nb >= 100) {
+			nb = nb % 100;
+		}
+			
+		ret += nb;
+		return ret;
+	}
+	
+	
+	
+	//Sortie-----------------------------------------------------------------------------------------------
 	public String afficheTicket() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Ticket de sortie n° : ";
+		final String MSGNUM = "Ticket de sortie nï¿½ : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 		final String MSGCOUT = "Montant : ";
@@ -83,6 +136,7 @@ public class Arrivee {
 
 	
 
+	
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,5 @@
 package fr.rigaud;
+import com.onbarcode.barcode.*;
 
 public class Demo {
 
