@@ -83,7 +83,7 @@ public class Arrivee {
 			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
 			
 			
-			
+			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
