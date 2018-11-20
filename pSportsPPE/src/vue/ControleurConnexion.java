@@ -1,17 +1,19 @@
 package vue;
 
+import fr.rigaud.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ControleurConnexion {
+public class ControleurConnexion extends ControleurCFun {
+
 
     //TextField + PasswordField--------------------------------------------------------
     @FXML
@@ -65,7 +67,7 @@ public class ControleurConnexion {
                 l_noMDP.setText(ERRNOMDP);
             } else {
                 if (tf_login.getText().equals(LOGIN) && pf_pass.getText().equals(MDP)) {
-                    openWindow();
+                    openVueGestionnaire();
                 } else {
                     l_Wrong.setText(ERRLOG);
                 }
@@ -75,17 +77,19 @@ public class ControleurConnexion {
     }
     
     @FXML
-    private void openWindow() {
+    private void openVueGestionnaire() {
         try {
-            Stage stage = (Stage) b_connection.getScene().getWindow();
-            stage.close();
-            
-            Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/vue/gestionnaire.fxml"));
+            AnchorPane root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main .class.getResource("/vue/gestionnaire.fxml"));
 
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setTitle("CFUN");
-            primaryStage.show();
+            root = (AnchorPane) loader.load();
+            Scene scene = new Scene(root);
+            
+            Stage stage = Main.getPrimaryStage();
+            stage.setScene(scene);
+            stage.setTitle("Complexe CFUN");
+            stage.show();
         } catch(Exception e) {
             e.printStackTrace();
         }

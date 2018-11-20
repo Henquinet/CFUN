@@ -4,64 +4,32 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="353.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurMain">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurMain">
    <children>
-      <Label fx:id="l_accueil" layoutY="173.0" prefHeight="60.0" prefWidth="546.0" text="Bienvenue au complexe C FUN" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="143.0">
+      <Label fx:id="l_bienvenue" alignment="CENTER" layoutX="10.0" layoutY="119.0" prefHeight="62.0" prefWidth="580.0" textAlignment="CENTER" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="119.0">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <MenuBar fx:id="menuBar" prefHeight="17.0" prefWidth="566.0">
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
         <menus>
           <Menu mnemonicParsing="false" text="Visiteur">
                <items>
-                  <MenuItem fx:id="mi_gestionnaire" mnemonicParsing="false" onAction="#toCustomer" text="Accueil" />
+                  <MenuItem fx:id="mi_gestionnaire" mnemonicParsing="false" onAction="#openVueVisiteur" text="Accueil" />
                </items></Menu>
           <Menu mnemonicParsing="false" text="Gestionnaire">
                <items>
-                  <MenuItem fx:id="mi_visiteur" mnemonicParsing="false" onAction="#openWindow" text="outil gestionnaire" />
+                  <MenuItem fx:id="mi_visiteur" mnemonicParsing="false" onAction="#openConnexionGestionnaire" text="outil gestionnaire" />
                </items></Menu>
           <Menu mnemonicParsing="false" text="Quitter">
                <items>
-                  <MenuItem fx:id="mi_rester" mnemonicParsing="false" text="Rester" />
                   <MenuItem fx:id="mi_quitter" mnemonicParsing="false" onAction="#exit" text="Quitter" />
                </items>
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane fx:id="tabPane" layoutY="26.0" prefHeight="321.0" prefWidth="566.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-            <Tab fx:id="tab_muscu" onSelectionChanged="#changeToMuscu" style="-fx-background-color: grey;" text="Infos Muscu">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="l_muscu_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
-                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="277.0" layoutY="160.0" radius="57.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="103.0" />
-                        <Label fx:id="l_muscu_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="tab_fit" onSelectionChanged="#changeToFit" style="-fx-background-color: grey;" text="Infos Fit">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="l_fit_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
-                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="277.0" layoutY="160.0" radius="57.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="103.0" />
-                        <Label fx:id="l_fit_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="t_billetEntree" style="-fx-background-color: grey;" text="Entrée" />
-            <Tab fx:id="t_ticketsortie" style="-fx-background-color: grey;" text="Sortie" />
-        </tabs>
-      </TabPane>
    </children>
 </AnchorPane>

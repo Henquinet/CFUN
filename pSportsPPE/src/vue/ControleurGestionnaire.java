@@ -1,40 +1,20 @@
 package vue;
-import java.io.IOException;
-import java.net.URL;
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import fr.rigaud.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
-public class ControleurGestionnaire {
-	// Main------------------------------------------------------------
-	@FXML
-	private TabPane tabp;
-	
+public class ControleurGestionnaire extends ControleurCFun {	
 	//Accueil----------------------------------------------------------
 	@FXML
 	private Label l_main;
-	
 	//Info general
 	@FXML
     private Label l_muscu_fm_comp;
@@ -83,12 +63,12 @@ public class ControleurGestionnaire {
     private Label l_infos;
 	
     //Onglets-----------------------------------------------
+    @FXML
+    private TabPane tabp;
 	@FXML
     private Tab tab_fit;
 	@FXML
     private Tab tab_muscu;
-    @FXML
-    private Tab tab_quitter;
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -179,11 +159,5 @@ public class ControleurGestionnaire {
 			} 
 		}
 	}
-		
-	@FXML
-	private void exit() {
-		System.exit(0);
-	}
-	
 	
 }
