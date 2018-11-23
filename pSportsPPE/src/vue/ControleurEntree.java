@@ -18,7 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class ControleurVisiteur extends ControleurCFun{
+public class ControleurEntree extends ControleurCFun{
     
     // TabPane----------------------------------------------------------
     @FXML
@@ -45,9 +45,9 @@ public class ControleurVisiteur extends ControleurCFun{
     private Circle c_fit_color;
     // Boutons------------------------------------------------------------ 
     @FXML
-    private Button b_enter_muscu;
+    private Button b_entrer_muscu;
     @FXML
-    private Button b_enter_fit;
+    private Button b_entrer_fit;
     // Titres------------------------------------------------------------ 
     private final String TITRE_MAIN = "Etat du Complexe : ";
     private final String TITRE_FITN = "Infos Fitness";
@@ -56,7 +56,7 @@ public class ControleurVisiteur extends ControleurCFun{
     private Complexe complexe;
     
     
-    public ControleurVisiteur() {
+    public ControleurEntree() {
         complexe = new Complexe(5,4,"CFUN");
     }
     

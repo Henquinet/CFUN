@@ -15,7 +15,9 @@ public class ControleurCFun {
     @FXML
     private MenuBar menuBar;
     @FXML
-    private Menu m_visiteur;
+    private Menu m_entree;
+    @FXML
+    private Menu m_sortie;
     @FXML
     private Menu m_gestionnaire;
     @FXML
@@ -27,9 +29,13 @@ public class ControleurCFun {
     
     @FXML
     protected void initialize() {
-        l_menu = new Label("Visiteurs");
-        l_menu.setOnMouseClicked(mouseEvent-> openVueVisiteur());
-        m_visiteur = new Menu("", l_menu);
+        l_menu = new Label("Entrée Visiteurs");
+        l_menu.setOnMouseClicked(mouseEvent-> openVueEntréeVisiteur());
+        m_entree = new Menu("", l_menu);
+        
+        l_menu = new Label("Sortie Visiteurs");
+        l_menu.setOnMouseClicked(mouseEvent-> openVueSortieVisiteur());
+        m_sortie = new Menu("", l_menu);
         
         l_menu = new Label("Gestionnaire");
         l_menu.setOnMouseClicked(mouseEvent-> openConnexionGestionnaire());
@@ -41,17 +47,17 @@ public class ControleurCFun {
 
         l_menu = null;
 
-        listeMenus = new Menu[]{m_visiteur, m_gestionnaire, m_quitter};
+        listeMenus = new Menu[]{m_entree, m_sortie, m_gestionnaire, m_quitter};
 
         menuBar.getMenus().addAll(listeMenus);
     }
     
     @FXML
-    private void openVueVisiteur() {
+    private void openVueEntréeVisiteur() {
         try {
             AnchorPane root;
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main .class.getResource("/vue/visiteur.fxml"));
+            loader.setLocation(Main .class.getResource("/vue/entreeVisiteur.fxml"));
 
             root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
@@ -59,6 +65,25 @@ public class ControleurCFun {
             Stage stage = Main.getPrimaryStage();
             stage.setScene(scene);
             stage.setTitle("Complexe CFUN");
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void openVueSortieVisiteur() {
+        try {
+            AnchorPane root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main .class.getResource("/vue/sortieVisiteur.fxml"));
+
+            root = (AnchorPane) loader.load();
+            Scene scene = new Scene(root);
+            
+            Stage stage = Main.getPrimaryStage();
+            stage.setScene(scene);
+            stage.setTitle("Sortie du complexe");
             stage.show();
         } catch(Exception e) {
             e.printStackTrace();

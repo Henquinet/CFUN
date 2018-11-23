@@ -10,15 +10,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ControleurBillet {
+public class ControleurTicket {
 
-    // Label-------------------------------------------------------------
+ // Label-------------------------------------------------------------
     @FXML
     private Label l_complexe;
     @FXML
     private Label l_date;
     @FXML
     private Label l_heure;
+    @FXML
+    private Label l_montant;
     @FXML
     private Label l_billet;
     // Bouton-------------------------------------------------------------
@@ -28,9 +30,10 @@ public class ControleurBillet {
     private final String MSG_COMPLEXE = "Complexe ";
     private final String MSG_DATE = "Date : ";
     private final String MSG_HEURE = "Heure : ";
+    private final String MSG_MONTANT = "Montant : ";
     private final String MSG_BILLET = "Billet d'entrée n° : ";
     
-    public ControleurBillet() {}
+    public ControleurTicket() {}
     
     @FXML
     private void initialize() {}
@@ -42,7 +45,8 @@ public class ControleurBillet {
         l_complexe.setText(MSG_COMPLEXE + complexe.getNomComplexe());
         l_date.setText(MSG_DATE + date);
         l_heure.setText(MSG_HEURE + heure);
-        l_billet.setText(MSG_BILLET + Complexe.getNumeroActuel());
+        l_montant.setText(MSG_MONTANT);
+        l_billet.setText(MSG_BILLET + "");
     }
     
     @FXML
@@ -50,5 +54,6 @@ public class ControleurBillet {
         Stage stage = (Stage) b_quitter.getScene().getWindow();
         stage.close(); 
     }
+    
     
 }
