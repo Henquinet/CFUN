@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="100.0" maxWidth="400.0" minHeight="100.0" minWidth="400.0" prefHeight="100.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurBillet">
+   <children>
+      <Button fx:id="b_quitter" layoutX="315.0" layoutY="62.0" mnemonicParsing="false" onAction="#exit" text="Quitter" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="62.0" />
+      <Label fx:id="l_complexe" layoutX="10.0" layoutY="14.0" text="Complexe" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
+      <Label fx:id="l_date" layoutX="14.0" layoutY="46.0" text="Date :" AnchorPane.bottomAnchor="41.5" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="41.5" />
+      <Label fx:id="l_heure" layoutX="11.0" layoutY="66.0" text="Heure :" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" />
+      <Label fx:id="l_billet" layoutX="248.0" layoutY="14.0" text="Billet d'entrée n° :" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="7.0" />
+   </children>
+</AnchorPane>
