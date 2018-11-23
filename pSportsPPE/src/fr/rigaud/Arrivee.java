@@ -61,10 +61,12 @@ public class Arrivee {
 	
 	private void genBarcode() {
 		EAN13 barcode = new EAN13();
-		String data = format(numeroArrivee);
+		String data = "";
+		
+		data += format(numeroArrivee);
 		
 		data += format(hAr.get(Calendar.DAY_OF_MONTH));
-		data += format(hAr.get(Calendar.MONTH)+1);
+		data += format(hAr.get(Calendar.MONTH) + 1);
 		data += format(hAr.get(Calendar.YEAR));
 		
 		data += format(hAr.get(Calendar.HOUR));
