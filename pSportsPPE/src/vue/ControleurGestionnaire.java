@@ -72,7 +72,7 @@ public class ControleurGestionnaire extends ControleurCFun {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	private final String TITRE_MAIN = "Etat du Complexe : ";
+	private final String TITRE_MAIN = "Etat du complexe : ";
 	private final String DATE = "date : ";
 	private final String HEURE = "heure : ";
 	private final String TITRE_FITN = "Infos Fitness";
@@ -81,23 +81,14 @@ public class ControleurGestionnaire extends ControleurCFun {
 	private final String NBPL = "Nombre de places libre : ";
 	private final String TXOCC = "Taux occ. : ";
 	
-	private Complexe comp;
-	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public ControleurGestionnaire() {
-		comp = new Complexe(5,4,"test");
-		Arrivee test = new Arrivee(comp,'M');
-		comp.entreeUsager(test);
-		comp.entreeUsager(test);
-		comp.entreeUsager(test);
-		comp.entreeUsager(test);
-	} 
+	public ControleurGestionnaire() {} 
 	
 	@FXML
 	public void initialize() {
 	    super.initialize();
 	    
-	    l_infos.setText(comp.lesInfos());
+	    l_infos.setText(complexeCFUN.lesInfos());
 	}
 	
 	@FXML
@@ -116,48 +107,45 @@ public class ControleurGestionnaire extends ControleurCFun {
 		String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
 		
 		if(fitn) {
-		    l_fit_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
+		    //mise a jour des informations Fit
+		    l_fit_fm_comp.setText(TITRE_MAIN + complexeCFUN.getNomComplexe());
 		    l_fit_fm_date.setText(DATE + date);
 		    l_fit_fm_heure.setText(HEURE + heure);
 			l_fit_fm_t.setText(TITRE_FITN);
-			l_fit_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesFit());
-			l_fit_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesFit());
-			l_fit_fm_taux.setText(TXOCC + comp.etatFit()*100 + "%");
-			etat = comp.etatFit();
-			
-			switch(new ChoixCouleur(etat).getCouleur()) {
-            case vert:
-                c_fit_color.fillProperty().set(Paint.valueOf("green"));
-                break;
-            case orange:
-                c_fit_color.fillProperty().set(Paint.valueOf("orange"));
-                break;
-            case rouge:
-                c_fit_color.fillProperty().set(Paint.valueOf("red"));
-                break;
-			} 
+			l_fit_fm_dispo.setText(NBPL + complexeCFUN.getNbPlacesRestantesFit());
+			l_fit_fm_ocup.setText(NBPD + complexeCFUN.getNbPlacesOccupeesFit());
+			l_fit_fm_taux.setText(TXOCC + complexeCFUN.etatFit()*100 + "%");
+
+			//mise a jour du voyant de fit
+            etat = complexeCFUN.etatFit();
+            changeCouleur(c_fit_color, etat);
 		} else {
-		    
-		    l_muscu_fm_comp.setText(TITRE_MAIN + comp.getNomComplexe());
+		    //mise a jour des informations Muscu
+		    l_muscu_fm_comp.setText(TITRE_MAIN + complexeCFUN.getNomComplexe());
             l_muscu_fm_date.setText(DATE + date);
             l_muscu_fm_heure.setText(HEURE + heure);
 			l_muscu_fm_t.setText(TITRE_MUSC);
-			l_muscu_fm_dispo.setText(NBPL + comp.getNbPlacesRestantesMuscu());
-			l_muscu_fm_ocup.setText(NBPD + comp.getNbPlacesOccupeesMuscu());
-			l_muscu_fm_taux.setText(TXOCC + comp.etatMuscu()*100 + "%");
-			etat = comp.etatMuscu();
-
-			switch(new ChoixCouleur(etat).getCouleur()) {
-            case vert:
-                c_muscu_color.fillProperty().set(Paint.valueOf("green"));
-                break;
-            case orange:
-                c_muscu_color.fillProperty().set(Paint.valueOf("orange"));
-                break;
-            case rouge:
-                c_muscu_color.fillProperty().set(Paint.valueOf("red"));
-                break;
-			} 
+			l_muscu_fm_dispo.setText(NBPL + complexeCFUN.getNbPlacesRestantesMuscu());
+			l_muscu_fm_ocup.setText(NBPD + complexeCFUN.getNbPlacesOccupeesMuscu());
+			l_muscu_fm_taux.setText(TXOCC + complexeCFUN.etatMuscu()*100 + "%");
+			
+			//mise a jour du voyant de muscu
+			etat = complexeCFUN.etatMuscu();
+			changeCouleur(c_muscu_color, etat);
 		}
 	}	
+	
+	private void changeCouleur(Circle cercleVoyant, double etat) {
+        switch(new ChoixCouleur(etat).getCouleur()) {
+        case vert:
+            cercleVoyant.fillProperty().set(Paint.valueOf("green"));
+            break;
+        case orange:
+            cercleVoyant.fillProperty().set(Paint.valueOf("orange"));
+            break;
+        case rouge:
+            cercleVoyant.fillProperty().set(Paint.valueOf("red"));
+            break;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package vue;
 
+import fr.rigaud.Complexe;
 import fr.rigaud.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ public class ControleurCFun {
     private Label l_menu;
     
     private Menu listeMenus[];
+    
+    protected static Complexe complexeCFUN = new Complexe(5,4,"CFUN ");
     
     @FXML
     protected void initialize() {

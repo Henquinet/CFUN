@@ -13,17 +13,17 @@
         <menus>
         </menus>
       </MenuBar>
-      <Button fx:id="b_sortie_fit" layoutX="185.0" layoutY="196.0" mnemonicParsing="false" onAction="#buttonPushFit" prefHeight="65.0" prefWidth="230.0" text="Sortie Fitness" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="185.0">
+      <Button fx:id="b_sortie_fit" layoutX="185.0" layoutY="191.0" mnemonicParsing="false" onAction="#buttonPushFit" prefHeight="65.0" prefWidth="230.0" text="Sortie Fitness" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="185.0">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button fx:id="b_sortie_muscu" layoutX="185.0" layoutY="74.0" mnemonicParsing="false" onAction="#buttonPushMuscu" prefHeight="65.0" prefWidth="230.0" text="Sortie Musculation" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="185.0">
+      <Button fx:id="b_sortie_muscu" layoutX="185.0" layoutY="79.0" mnemonicParsing="false" onAction="#buttonPushMuscu" prefHeight="65.0" prefWidth="230.0" text="Sortie Musculation" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="185.0">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Label layoutX="14.0" layoutY="39.0" text="Numéro d'arrivée :" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="39.0" />
-      <ComboBox layoutX="121.0" layoutY="35.0" prefHeight="25.0" prefWidth="40.0" />
+      <Label fx:id="l_num_comboBox" layoutX="14.0" layoutY="39.0" text="Numéro d'arrivée :" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="39.0" />
+      <ComboBox fx:id="cb_num_arrivee" layoutX="121.0" layoutY="35.0" prefHeight="25.0" prefWidth="40.0" />
    </children>
 </AnchorPane>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -33,7 +31,7 @@
                         <Label fx:id="l_muscu_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
                         <Label fx:id="l_muscu_fm_etat" layoutX="56.0" layoutY="179.0" prefHeight="17.0" prefWidth="123.0" text="Etat place occupée :" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="321.0" />
                         <Label fx:id="l_muscu_fm_dispo" layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
-                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="236.0" layoutY="187.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="247.0" AnchorPane.topAnchor="170.0" />
+                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="236.0" layoutY="173.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="142.0" />
                         <Label fx:id="l_muscu_fm_ocup" layoutX="56.0" layoutY="106.0" text="Nb place(s) occupée(s) :" />
                         <Label fx:id="l_muscu_fm_taux" layoutX="56.0" layoutY="130.0" text="Taux occ. M" />
                         <Label fx:id="l_muscu_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
@@ -49,7 +47,7 @@
                         <Label fx:id="l_fit_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
                         <Label fx:id="l_fit_fm_etat" layoutX="56.0" layoutY="179.0" text="Etat place occupée :" AnchorPane.bottomAnchor="50.0" />
                         <Label fx:id="l_fit_fm_dispo" layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
-                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="236.0" layoutY="187.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="253.0" AnchorPane.topAnchor="170.0" />
+                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="236.0" layoutY="173.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="142.0" />
                         <Label fx:id="l_fit_fm_ocup" layoutX="56.0" layoutY="106.0" text="Nb place(s) occupée(s) :" />
                         <Label fx:id="l_fit_fm_taux" layoutX="56.0" layoutY="130.0" text="Taux occ. M" />
                         <Label fx:id="l_fit_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />

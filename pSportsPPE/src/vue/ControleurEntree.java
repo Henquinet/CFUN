@@ -53,12 +53,7 @@ public class ControleurEntree extends ControleurCFun{
     private final String TITRE_FITN = "Infos Fitness";
     private final String TITRE_MUSC = "Infos Musculation";
     
-    private Complexe complexe;
-    
-    
-    public ControleurEntree() {
-        complexe = new Complexe(5,4,"CFUN");
-    }
+    public ControleurEntree() {}
     
     @FXML
     public void initialize() {
@@ -83,18 +78,18 @@ public class ControleurEntree extends ControleurCFun{
         double etat = 0;
         
         if(fitn) {
-            l_fit_fm_comp.setText(TITRE_MAIN + complexe.getNomComplexe());
+            l_fit_fm_comp.setText(TITRE_MAIN + complexeCFUN.getNomComplexe());
             l_fit_fm_t.setText(TITRE_FITN);
             
             //mise a jour du voyant de fit
-            etat = complexe.etatFit();
+            etat = complexeCFUN.etatFit();
             changeCouleur(c_fit_color, etat);
         } else {
-            l_muscu_fm_comp.setText(TITRE_MAIN + complexe.getNomComplexe());
+            l_muscu_fm_comp.setText(TITRE_MAIN + complexeCFUN.getNomComplexe());
             l_muscu_fm_t.setText(TITRE_MUSC);
             
             //mise a jour du voyant de muscu
-            etat = complexe.etatMuscu();
+            etat = complexeCFUN.etatMuscu();
             changeCouleur(c_muscu_color, etat);
         }
     }
@@ -115,26 +110,40 @@ public class ControleurEntree extends ControleurCFun{
     
     @FXML
     private void buttonPushMuscu() {
+        //ajout d'une arrivée dans la muscu du complexe
+        Arrivee uneArrivee = new Arrivee(complexeCFUN,'M');
+        complexeCFUN.entreeUsager(uneArrivee);
+        
+        //affichage du billet
+        openBillet();
+        
         //mise a jour du voyant de muscu
-        double etat = complexe.etatMuscu();
+        double etat = complexeCFUN.etatMuscu();
         changeCouleur(c_muscu_color, etat);
         
-        //ajout d'une arrivée dans la muscu du complexe
-        Arrivee uneArrivee = new Arrivee(complexe,'M');
-        complexe.entreeUsager(uneArrivee);
-        openBillet();
+        //si plus de place bouton desactivé
+        if (complexeCFUN.getNbPlacesRestantesMuscu() == 0) {
+            b_entrer_muscu.setDisable(true);
+        }
     }
     
     @FXML
     private void buttonPushFit() {
+        //ajout d'une arrivée dans le fit du complexe
+        Arrivee uneArrivee = new Arrivee(complexeCFUN,'F');
+        complexeCFUN.entreeUsager(uneArrivee);
+        
+        //affichage du billet
+        openBillet();
+        
         //mise a jour du voyant de fit
-        double etat = complexe.etatFit();
+        double etat = complexeCFUN.etatFit();
         changeCouleur(c_fit_color, etat);
         
-        //ajout d'une arrivée dans le fit du complexe
-        Arrivee uneArrivee = new Arrivee(complexe,'F');
-        complexe.entreeUsager(uneArrivee);
-        openBillet();
+        //si plus de place bouton desactivé
+        if (complexeCFUN.getNbPlacesRestantesFit() == 0) {
+            b_entrer_fit.setDisable(true);
+        }
     }
     
     private void openBillet() {
@@ -150,7 +159,7 @@ public class ControleurEntree extends ControleurCFun{
             //recuperation du controleur du loader            
             ControleurBillet controleurBillet = loader.getController();
             //passage du code de formation en paramètre vers une méthode du controleur
-            controleurBillet.initChamps(complexe);
+            controleurBillet.initChamps(complexeCFUN);
             
         } catch (IOException e) {
             e.printStackTrace();
