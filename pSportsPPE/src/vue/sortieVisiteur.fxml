@@ -23,7 +23,9 @@
             <Font size="23.0" />
          </font>
       </Button>
-      <Label fx:id="l_num_comboBox" layoutX="14.0" layoutY="39.0" text="Numéro d'arrivée :" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="39.0" />
-      <ComboBox fx:id="cb_num_arrivee" layoutX="121.0" layoutY="35.0" prefHeight="25.0" prefWidth="40.0" />
+      <Label fx:id="l_num_comboBox_muscu" layoutX="14.0" layoutY="103.0" text="Numéro d'arrivée :" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="103.0" />
+      <ComboBox fx:id="cb_num_arrivee_muscu" layoutX="123.0" layoutY="99.0" prefHeight="25.0" prefWidth="40.0" />
+      <Label fx:id="l_num_comboBox_fit" layoutX="14.0" layoutY="215.0" text="Numéro d'arrivée :" />
+      <ComboBox fx:id="cb_num_arrivee_fit" layoutX="123.0" layoutY="211.0" prefHeight="25.0" prefWidth="40.0" />
    </children>
 </AnchorPane>

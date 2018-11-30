@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import fr.rigaud.Arrivee;
 import fr.rigaud.Complexe;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,14 +32,14 @@ public class ControleurTicket {
     private final String MSG_DATE = "Date : ";
     private final String MSG_HEURE = "Heure : ";
     private final String MSG_MONTANT = "Montant : ";
-    private final String MSG_BILLET = "Billet d'entrée n° : ";
+    private final String MSG_TICKET = "Ticket de sortie n° : ";
     
     public ControleurTicket() {}
     
     @FXML
     private void initialize() {}
     
-    public void initChamps (Complexe complexe) {
+    public void initChamps (Complexe complexe, Arrivee arrivee) {
         String date = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(new Date());
         String heure = new SimpleDateFormat("HH:mm", Locale.FRANCE).format(new Date());
         
@@ -46,7 +47,8 @@ public class ControleurTicket {
         l_date.setText(MSG_DATE + date);
         l_heure.setText(MSG_HEURE + heure);
         l_montant.setText(MSG_MONTANT);
-        l_billet.setText(MSG_BILLET + "");
+        l_billet.setText(MSG_TICKET + "");
+        
     }
     
     @FXML
