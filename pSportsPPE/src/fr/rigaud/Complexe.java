@@ -93,6 +93,7 @@ public class Complexe {
 	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException {
 		Arrivee ret = null;
 		if(code.length() == 12) {
+			//Récupération des données du code barre
 			int nBillet = Integer.parseInt(code.substring(0, 2));
 			int day = Integer.parseInt(code.substring(2, 4));
 			int month = Integer.parseInt(code.substring(4, 6))-1;

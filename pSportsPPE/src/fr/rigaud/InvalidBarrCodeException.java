@@ -2,6 +2,10 @@ package fr.rigaud;
 
 public class InvalidBarrCodeException extends Exception{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3531372674322516252L;
 	private String message;
 	
 	

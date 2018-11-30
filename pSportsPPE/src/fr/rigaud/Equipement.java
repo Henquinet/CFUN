@@ -2,9 +2,9 @@ package fr.rigaud;
 //Change
 public class Equipement {
 
-	private boolean muscu=false;
-	private boolean defectueux=false;
-	private boolean occupe=false;
+	private boolean muscu = false;
+	private boolean defectueux = false;
+	private boolean occupe = false;
 	private Arrivee arrivee;
 	
 	public Equipement(boolean muscu, boolean occupe, boolean defectueux) {
