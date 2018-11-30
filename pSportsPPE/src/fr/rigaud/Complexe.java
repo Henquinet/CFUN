@@ -11,8 +11,6 @@ public class Complexe {
 	private static int numeroActuel = 0;
 	private int nbTotalPlacesFit;
 	private int nbTotalPlacesMuscu;
-	private int nbPlacesOccupeesFit;
-	private int nbPlacesOccupeesMuscu;
 	private String nomComplexe;
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
 	List<Equipement> equipements = new ArrayList<Equipement>();
@@ -22,15 +20,12 @@ public class Complexe {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-
+		
 	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit, final String nomComplexe) {
 		this.nbTotalPlacesFit = nbTotalPlacesFit;
 		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
 		this.nomComplexe = nomComplexe;
-		this.nbPlacesOccupeesFit = 0;
-		this.nbPlacesOccupeesMuscu = 0;
+		
 		for(int i = 0; i < nbTotalPlacesMuscu; i++) {
 			equipements.add(new Equipement(true));
 		}
@@ -43,12 +38,12 @@ public class Complexe {
 		
 	}
 
-
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//Change
 	public boolean entreeUsager(final Arrivee uneArrivee) {
 		boolean ok;
 		char choix;
@@ -61,7 +56,7 @@ public class Complexe {
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
 				if(rechercheEquipement(choix == 'M',uneArrivee)) {
-					this.nouvelUsagerFitness();
+					
 					ok = true;
 				}
 
@@ -72,7 +67,7 @@ public class Complexe {
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
 				if(rechercheEquipement(choix == 'M',uneArrivee)) {
-					this.nouvelUsagerMusculation();
+					
 					ok = true;
 				}
 				
@@ -85,20 +80,53 @@ public class Complexe {
 	public Arrivee sortieUsager(final int entree) {
 		Arrivee leDepart = recherche(entree);
 		sortieEquipement(leDepart);
-		if (leDepart.getChoixSport() == 'F') {
-			this.oterUsagerFitness();
-		} else {
-			this.oterUsagerMusculation();
-		}
+		
 		return leDepart;
 	}
-
-
+	
+	/**
+	 * Gestion de la sortie depuis un code barre
+	 * @param code = donnÃ©es du code barre dÃ©codÃ©
+	 * @return
+	 * @throws InvalidBarrCodeException
+	 */
+	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException {
+		Arrivee ret = null;
+		if(code.length() == 12) {
+			int nBillet = Integer.parseInt(code.substring(0, 2));
+			int day = Integer.parseInt(code.substring(2, 4));
+			int month = Integer.parseInt(code.substring(4, 6))-1;
+			int year = 2000 + Integer.parseInt(code.substring(6, 8));
+			int hour = Integer.parseInt(code.substring(8, 10));
+			int min = Integer.parseInt(code.substring(10, 12));
+			ret = recherche(nBillet);
+			
+			//VÃ©rification du code barre
+			if(ret.gethAr().get(Calendar.DAY_OF_MONTH) == day
+				&& ret.gethAr().get(Calendar.MONTH) == month 
+				&& ret.gethAr().get(Calendar.YEAR) == year
+				&& ret.gethAr().get(Calendar.HOUR) == hour 
+				&& ret.gethAr().get(Calendar.MINUTE) == min)
+			{
+				
+				sortieEquipement(ret);
+				
+			}
+			else {
+				throw new InvalidBarrCodeException(code);
+			}
+		}
+		else {
+			throw new InvalidBarrCodeException(code + " la longueur doit Ãªtre de 12 charactÃ¨res");
+		}
+		
+		return ret;
+	}
 
 	
-
+	
 	public double etatFit() {
-		return (this.getNbPlacesOccupeesFit()) * 1.0 / this.nbTotalPlacesFit;
+		return (this.getNbPlacesIndisponibles(false)) * 1.0d / this.nbTotalPlacesFit;
 	}
 
 	public String lesInfos() {
@@ -107,8 +135,8 @@ public class Complexe {
 		final String MSGHEURE = "heure : ";
 		final String MSGDISPMUSCU = "Places disponibles M : ";
 		final String MSGDISPFIT = "Places disponibles F : ";
-		final String MSGOCCMUSCU = "Places occupées M : ";
-		final String MSGOCCFIT = "Places occupées F : ";
+		final String MSGOCCMUSCU = "Places occupï¿½es M : ";
+		final String MSGOCCFIT = "Places occupï¿½es F : ";
 		final String MSGTXMUSCU = "Taux occ. M : ";
 		final String MSGTXFIT = "Taux occ. F : ";
 		final String MSGCOULMUSCU = "Couleur M : ";
@@ -127,12 +155,12 @@ public class Complexe {
 		leDoc += MSGHEURE + lHeure.format(laDate) + "\n";
 
 		leDoc += MSGDISPMUSCU + this.getNbPlacesRestantesMuscu() + "\t";
-		leDoc += MSGOCCMUSCU + this.nbPlacesOccupeesMuscu + "\t";
+		leDoc += MSGOCCMUSCU + getNbPlacesIndisponibles(true) + "\t";
 		leDoc += MSGTXMUSCU + df2.format(this.etatMuscu()) + "\t";
 		leDoc += MSGCOULMUSCU + this.couleurMuscu() + "\n";
 
 		leDoc += MSGDISPFIT + this.getNbPlacesRestantesFit() + "\t";
-		leDoc += MSGOCCFIT + this.nbPlacesOccupeesFit + "\t";
+		leDoc += MSGOCCFIT + getNbPlacesIndisponibles(false) + "\t";
 		leDoc += MSGTXFIT + df2.format(this.etatFit()) + "\t";
 		leDoc += MSGCOULFIT + this.couleurFit() + "\n\n";
 
@@ -140,7 +168,7 @@ public class Complexe {
 		return leDoc;
 	}
 
-	
+
 	public void sortieEquipement(Arrivee ar) {
 		int cpt = 0;
 		boolean find = false;
@@ -156,8 +184,9 @@ public class Complexe {
 		}
 	}
 	
+	
 	/**
-	 * Retourne True si un équipement a été trouvé (passe Equipement.IsOccupe à True)
+	 * Retourne True si un Ã©quipement a Ã©tÃ© trouvÃ© (passe Equipement.IsOccupe  True)
 	 * @param musc
 	 * @return
 	 */
@@ -179,32 +208,13 @@ public class Complexe {
 	}
 	
 
-	public void nouvelUsagerFitness() {
-		nbPlacesOccupeesFit++;
-	}
-
-	public void oterUsagerFitness() {
-		nbPlacesOccupeesFit--;
-	}
-
 	public int getNbPlacesRestantesMuscu() {
-		return this.nbTotalPlacesMuscu - (this.nbPlacesOccupeesMuscu);
+		return this.nbTotalPlacesMuscu - (getNbPlacesIndisponibles(true));
 	}
 
-	public int getNbPlacesOccupeesMuscu() {
-		return this.nbPlacesOccupeesMuscu;
-	}
-
-	public void nouvelUsagerMusculation() {
-		nbPlacesOccupeesMuscu++;
-	}
-
-	public void oterUsagerMusculation() {
-		nbPlacesOccupeesMuscu--;
-	}
 
 	public double etatMuscu() {
-		return (this.getNbPlacesOccupeesMuscu()) * 1.0
+		return (this.getNbPlacesIndisponibles(true)) * 1.0
 				/ this.nbTotalPlacesMuscu;
 	}
 
@@ -219,13 +229,9 @@ public class Complexe {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public int getNbPlacesRestantesFit() {
-		return this.nbTotalPlacesFit - (this.nbPlacesOccupeesFit);
+		return this.nbTotalPlacesFit - (getNbPlacesIndisponibles(false));
 	}
 
-	public int getNbPlacesOccupeesFit() {
-		return this.nbPlacesOccupeesFit;
-	}
-	
 	public static int getNumeroActuel() {
 		return numeroActuel;
 	}
@@ -242,8 +248,29 @@ public class Complexe {
 		return equipements;
 	}
 
-
-
+	public int getNbPlacesIndisponibles(boolean isMuscu) {
+		int ret = 0;
+		for(int i = 9; i < equipements.size(); i++) {
+			Equipement tmp =equipements.get(i);
+			if(tmp.isMuscu() == isMuscu && tmp.isOccupe() && tmp.isDefectueux()) {
+				ret++;
+			}
+		}
+		
+		return ret;
+	}
+	
+	public int getNbPlacesOccupes(boolean isMuscu) {
+		int ret = 0;
+		for(int i = 9; i < equipements.size(); i++) {
+			Equipement tmp =equipements.get(i);
+			if(tmp.isMuscu() == isMuscu && tmp.isOccupe()) {
+				ret++;
+			}
+		}
+		
+		return ret;
+	}
 	
 		
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

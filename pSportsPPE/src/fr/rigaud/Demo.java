@@ -1,13 +1,24 @@
 package fr.rigaud;
+import java.awt.HeadlessException;
+
 import com.onbarcode.barcode.*;
 
 public class Demo {
 
 	public static void main(String[] args) {
 		Complexe comp = new Complexe(4,4,"Le complexe");
-		comp.entreeUsager(new Arrivee(comp,'M'));
-		System.out.println(comp.sortieUsager(1).getMontant());
+		Arrivee ar = new Arrivee(comp,'M');
+		comp.entreeUsager(ar);
+		ar.afficheBillet();
 		
+		try {
+			comp.sortieBarCode(javax.swing.JOptionPane.showInputDialog("test"));
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidBarrCodeException e) {
+			javax.swing.JOptionPane.showMessageDialog(null, e.toString(), "Erreur code-bar", javax.swing.JOptionPane.ERROR_MESSAGE);
+		}
 		
 	}
 }

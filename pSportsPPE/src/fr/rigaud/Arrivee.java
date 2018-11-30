@@ -1,10 +1,13 @@
 package fr.rigaud;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import com.onbarcode.barcode.EAN13;
+
+import javafx.scene.image.Image;
 
 public class Arrivee {
 
@@ -13,7 +16,7 @@ public class Arrivee {
 	private char choixSport;
 	private long horaireArrivee;
 	private Calendar hDep; //heure D�part
-	private Calendar hAr;
+	private Calendar hAr;	//Change
 	private Complexe complexe;
 	
 	
@@ -21,7 +24,10 @@ public class Arrivee {
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
+	public Arrivee() {
+		// TODO Auto-generated constructor stub
+	}
+	//Change
 	public Arrivee(final Complexe complexe, final char choixSport) {
 		this.horaireArrivee = Calendar.getInstance().getTimeInMillis();
 		this.choixSport = choixSport;
@@ -35,7 +41,15 @@ public class Arrivee {
 	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	//Entrée
+	
+
+
+	//Change
+	
+	/**
+	 * Retourne le billet d'entrée
+	 * @return
+	 */
 	public String afficheBillet() {
 		final String MSGNOM = "Complexe ";
 		final String MSGNUM = "Billet d'entr�e n� : ";
@@ -58,7 +72,10 @@ public class Arrivee {
 	}
 
 	
-	
+	//Change
+	/**
+	 * Génère le code-barre (fichier image)
+	 */
 	private void genBarcode() {
 		EAN13 barcode = new EAN13();
 		String data = "";
@@ -92,12 +109,19 @@ public class Arrivee {
 		} 
 	}
 	
+	//Change
+	/**
+	 * Rajoute un 0 avant le nombre si < 10
+	 * Enlève les 2 premiers chiffre si > 1000
+	 * @param nb
+	 * @return
+	 */
 	private String format(int nb) {
 		String ret ="";
-		if(nb < 10) {
+		if(nb < 10) {	// Exemple 7 devient 07
 			ret = "0";
 		}
-		else if(nb >= 100) {
+		else if(nb >= 100) {	//Exemple 2018 devient 18
 			nb = nb % 100;
 		}
 			
@@ -107,7 +131,11 @@ public class Arrivee {
 	
 	
 	
-	//Sortie-----------------------------------------------------------------------------------------------
+	
+	/**
+	 * Retourn le ticket de sortie
+	 * @return
+	 */
 	public String afficheTicket() {
 		final String MSGNOM = "Complexe ";
 		final String MSGNUM = "Ticket de sortie n� : ";
@@ -136,14 +164,12 @@ public class Arrivee {
 		return leTicket;
 	}
 
-	
 
-	
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+	/**
+	 * Retourne le prix en ofnction de la durée
+	 * @param duree
+	 * @return
+	 */
 	public double calculPrix(long duree) {
 		double cout = 0;
 		if (duree <= 30 && duree > 15) {
@@ -169,6 +195,13 @@ public class Arrivee {
 	}
 	
 	
+
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	public double getMontant() {
 		double cout = 0;
 
@@ -182,7 +215,6 @@ public class Arrivee {
 		return cout;
 	}
 	
-
 	public Complexe getComplexe() {
 		return this.complexe;
 	}
@@ -197,5 +229,9 @@ public class Arrivee {
 	
 	public char getChoixSport() {
 		return choixSport;
+	}
+
+	public Calendar gethAr() {
+		return hAr;
 	}
 }

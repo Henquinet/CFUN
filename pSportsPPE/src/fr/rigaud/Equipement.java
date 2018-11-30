@@ -1,5 +1,5 @@
 package fr.rigaud;
-
+//Change
 public class Equipement {
 
 	private boolean muscu=false;

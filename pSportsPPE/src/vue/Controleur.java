@@ -1,4 +1,5 @@
 package vue;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.Parent;
@@ -23,6 +26,9 @@ import javafx.stage.Stage;
 
 public class Controleur {
 	// Main-------------------------------------------------------------
+	@FXML
+	private ImageView iw;
+	
 	@FXML
 	private MenuBar menu;
 	@FXML
@@ -55,7 +61,7 @@ public class Controleur {
 	private final String TITRE_MAIN = "Complexe ";
 	private final String TITRE_FITN = "Infos fitness";
 	private final String TITRE_MUSC = "Info Musculation";
-	private final String NBPD = "Nombre de places occupées : ";
+	private final String NBPD = "Nombre de places occupï¿½es : ";
 	private final String NBPL = "Nombre de places libre : ";
 	
 	private Complexe comp;
