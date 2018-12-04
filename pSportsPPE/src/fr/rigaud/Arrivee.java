@@ -10,12 +10,12 @@ import com.onbarcode.barcode.EAN13;
 import javafx.scene.image.Image;
 
 public class Arrivee {
-
+	
 	private static int numeroSortie = 0;
 	private int numeroArrivee;
 	private char choixSport;
 	private long horaireArrivee;
-	private Calendar hDep; //heure D�part
+	private Calendar hDep;  //heure D�part
 	private Calendar hAr;	//Change
 	private Complexe complexe;
 	
@@ -66,10 +66,10 @@ public class Arrivee {
 	/**
 	 * Génère le code-barre (fichier image)
 	 */
-	private void genBarcode() {
+	private String genBarcode() {
 		EAN13 barcode = new EAN13();
 		String data = "";
-		
+
 		data += format(numeroArrivee);
 		
 		data += format(hAr.get(Calendar.DAY_OF_MONTH));
@@ -81,22 +81,17 @@ public class Arrivee {
 		
 		System.out.println(data + " : " + data.length());
 		barcode.setData(data); 
-		barcode.setAddCheckSum(true);
-		barcode.setShowCheckSumChar(true);
+		barcode.setAddCheckSum(true);	//Calcul du CheckSum
+		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
 		
-		// Generate EAN13 barcode & print into Graphics2D object
-		try {
-			barcode.drawBarcode("Java Graphics2D object");
+		try {			
 			
- 			// Generate EAN13 barcode & encode into GIF format
 			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
-			
-			
 			 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		return "D://barcodes/barcode-" + data + ".gif";
 	}
 	
 	/**
@@ -151,7 +146,7 @@ public class Arrivee {
 	}
 
 	/**
-	 * Retourne le prix en ofnction de la durée
+	 * Retourne le prix en fonction de la durée
 	 * @param duree
 	 * @return
 	 */
