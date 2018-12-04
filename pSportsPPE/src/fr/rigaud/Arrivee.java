@@ -1,13 +1,9 @@
 package fr.rigaud;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import com.onbarcode.barcode.EAN13;
-
-import javafx.scene.image.Image;
 
 public class Arrivee {
 	

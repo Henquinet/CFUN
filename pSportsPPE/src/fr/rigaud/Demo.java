@@ -1,15 +1,17 @@
 package fr.rigaud;
 import java.awt.HeadlessException;
 
-import com.onbarcode.barcode.*;
+
 
 public class Demo {
 
 	public static void main(String[] args) {
+		
 		Complexe comp = new Complexe(4,4,"Le complexe");
 		Arrivee ar = new Arrivee(comp,'M');
 		comp.entreeUsager(ar);
 		ar.afficheBillet();
+		
 		
 		try {
 			comp.sortieBarCode(javax.swing.JOptionPane.showInputDialog("test"));
@@ -21,4 +23,5 @@ public class Demo {
 		}
 		
 	}
+
 }
