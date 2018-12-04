@@ -1,16 +1,14 @@
 package fr.rigaud;
 
 public class TestComplexe {
-	private static int nbMuscu = 4;
-	private static int nbFit = 5;
 	private static final String nomComplexe = "C Fun";
-	private static final String TYPE = "Type opération (E)ntrée ou (S)ortie : ";
-	private static final String SORTIE = "N° d'entrée Ã  sortir : ";
+	private static final String TYPE = "Type opï¿½ration (E)ntrï¿½e ou (S)ortie : ";
+	private static final String SORTIE = "Nï¿½ d'entrï¿½e Ã  sortir : ";
 	private static final String CHOIX = "(M)usculation, (F)itness : ";
-	private static final String AUTRE = "Autre opération (O/N) : ";
+	private static final String AUTRE = "Autre opï¿½ration (O/N) : ";
 	
 	public static void main(String[] args) {
-		Complexe leComplexe = new Complexe(nbMuscu, nbFit, nomComplexe);
+		Complexe leComplexe = new Complexe(nomComplexe);
 		
 		char repAutre = 'O';
 		char repType;

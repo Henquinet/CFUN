@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import connexion.ConnexionDerby;
+
 public class Complexe {
 	private static int numeroActuel = 0;
 	private int nbTotalPlacesFit;
@@ -15,7 +17,7 @@ public class Complexe {
 	private int nbPlacesOccupeesMuscu;
 	private String nomComplexe;
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
-	
+	private ConnexionDerby laBase;
 
 	
 	
@@ -23,12 +25,14 @@ public class Complexe {
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit, final String nomComplexe) {
-		this.nbTotalPlacesFit = nbTotalPlacesFit;
-		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
+	public Complexe( final String nomComplexe) {
+	    laBase = ConnexionDerby.getInstance();
+	    
+		this.nbTotalPlacesFit = laBase.getNbEquipementsTotal("Fitness");
+		this.nbTotalPlacesMuscu = laBase.getNbEquipementsTotal("Musculation");
 		this.nomComplexe = nomComplexe;
-		this.nbPlacesOccupeesFit = 0;
-		this.nbPlacesOccupeesMuscu = 0;
+		this.nbPlacesOccupeesFit = laBase.getNbEquipementsOccupees("Fitness");
+		this.nbPlacesOccupeesMuscu = laBase.getNbEquipementsOccupees("Fitness");
 	}
 
 

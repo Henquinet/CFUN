@@ -28,7 +28,7 @@ public class ControleurCFun {
     
     private Menu listeMenus[];
     
-    protected static Complexe complexeCFUN = new Complexe(5,4,"CFUN ");
+    protected static Complexe complexeCFUN = new Complexe("CFUN");
     
     @FXML
     protected void initialize() {

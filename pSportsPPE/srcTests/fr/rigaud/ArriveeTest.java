@@ -20,7 +20,7 @@ public class ArriveeTest {
 	@Test
 	public void testCalculPrix() {
 		final double DELTA = 0.1;
-		Complexe comp = new Complexe(3,3,"yoman");
+		Complexe comp = new Complexe("yoman");
 		Arrivee ar = new Arrivee(comp,'M');
 		
 		assertEquals(0.0,ar.calculPrix(14),DELTA);//0� car <= 1/4h
