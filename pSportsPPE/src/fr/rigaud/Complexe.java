@@ -70,6 +70,7 @@ public class Complexe {
 		} else {
 			this.oterUsagerMusculation();
 		}
+		lesArrivees.remove(recherche(entree));
 		return leDepart;
 	}
 

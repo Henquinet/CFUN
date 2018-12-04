@@ -77,7 +77,7 @@ public class ControleurSortie extends ControleurCFun {
         Arrivee arrivee = complexeCFUN.recherche(numeroArrivee);
         openTicket(arrivee);
         
-        //cb_num_arrivee.getItems().remove();
+        cb_num_arrivee_muscu.getItems().remove(String.valueOf(numeroArrivee));
         complexeCFUN.sortieUsager(numeroArrivee);
     }
     
@@ -87,7 +87,7 @@ public class ControleurSortie extends ControleurCFun {
         Arrivee arrivee = complexeCFUN.recherche(numeroArrivee);
         openTicket(arrivee);
         
-        //cb_num_arrivee.getItems().remove();
+        cb_num_arrivee_fit.getItems().remove(String.valueOf(numeroArrivee));
         complexeCFUN.sortieUsager(numeroArrivee);
     }
     
@@ -104,7 +104,7 @@ public class ControleurSortie extends ControleurCFun {
             //recuperation du controleur du loader            
             ControleurTicket controleurTicket = loader.getController();
             //passage du code de formation en paramètre vers une méthode du controleur
-            controleurTicket.initChamps(complexeCFUN, arrivee);
+            controleurTicket.initChamps(arrivee);
         } catch (IOException e) {
             e.printStackTrace();
         }

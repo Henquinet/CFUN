@@ -115,7 +115,7 @@ public class ControleurEntree extends ControleurCFun{
         complexeCFUN.entreeUsager(uneArrivee);
         
         //affichage du billet
-        openBillet();
+        openBillet(uneArrivee);
         
         //mise a jour du voyant de muscu
         double etat = complexeCFUN.etatMuscu();
@@ -134,7 +134,7 @@ public class ControleurEntree extends ControleurCFun{
         complexeCFUN.entreeUsager(uneArrivee);
         
         //affichage du billet
-        openBillet();
+        openBillet(uneArrivee);
         
         //mise a jour du voyant de fit
         double etat = complexeCFUN.etatFit();
@@ -146,7 +146,7 @@ public class ControleurEntree extends ControleurCFun{
         }
     }
     
-    private void openBillet() {
+    private void openBillet(Arrivee arrivee) {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader (getClass().getResource("billet.fxml"));
@@ -159,7 +159,7 @@ public class ControleurEntree extends ControleurCFun{
             //recuperation du controleur du loader            
             ControleurBillet controleurBillet = loader.getController();
             //passage du code de formation en paramètre vers une méthode du controleur
-            controleurBillet.initChamps(complexeCFUN);
+            controleurBillet.initChamps(arrivee);
             
         } catch (IOException e) {
             e.printStackTrace();
