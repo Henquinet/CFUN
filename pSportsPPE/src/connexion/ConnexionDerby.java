@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ConnexionDerby {
     private static ConnexionDerby singleton;
@@ -168,6 +170,31 @@ public class ConnexionDerby {
         } catch(Exception e) {
             System.err.println("Erreur : "+ e);
         }
+    }
+    
+    public ArrayList<String> getGestionnaire () {
+        ArrayList<String> leGestionnaire = new ArrayList<String>();
+        
+        Statement st = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+               sql = "SELECT identifiant, mdp FROM gestionnaire";
+               
+               st = connexion.createStatement();
+               rs = st.executeQuery(sql);
+               rs.next();
+               
+               leGestionnaire.add(rs.getString(1));
+               leGestionnaire.add(rs.getString(2));
+               
+        } catch(SQLException e) {
+            System.err.println("SQL erreur : " + sql + " " + e.getMessage());
+        } catch(Exception e) {
+            System.err.println("Erreur : "+ e);
+        }
+        return leGestionnaire;
     }
     
 }
