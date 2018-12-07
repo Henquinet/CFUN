@@ -91,6 +91,33 @@ public class ConnexionDerby {
         return nbFitLibre;
     }
     
+    public int getNbEquipementsDefectueux(String salle) {
+        int nbFitLibre = 0;
+        
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+               sql = "SELECT count (*) FROM Equipement E "
+                       + "INNER JOIN salle S ON E.salle = S.id_salle"
+                       + "WHERE etat = false AND S.nomSalle = ?";
+               
+               pst = connexion.prepareStatement(sql);
+               pst.setString(1, salle);
+               rs = pst.executeQuery();
+               rs.next();
+               
+               nbFitLibre = rs.getInt(1);;
+               
+        } catch(SQLException e) {
+            System.err.println("SQL erreur : " + sql + " " + e.getMessage());
+        } catch(Exception e) {
+            System.err.println("Erreur : "+ e);
+        }
+        return nbFitLibre;
+    }
+    
     public void miseAJourUsager(String salle, boolean entree) {
         //adapte le boolean en int pour recuperer un equipement libre ou non
         int libre;
