@@ -74,6 +74,7 @@ public class Complexe {
 				
 			}
 		}
+		
 		return ok;
 	}
 
@@ -251,9 +252,9 @@ public class Complexe {
 
 	public int getNbPlacesIndisponibles(boolean isMuscu) {
 		int ret = 0;
-		for(int i = 9; i < equipements.size(); i++) {
+		for(int i = 0; i < equipements.size(); i++) {
 			Equipement tmp =equipements.get(i);
-			if(tmp.isMuscu() == isMuscu && tmp.isOccupe() && tmp.isDefectueux()) {
+			if((tmp.isMuscu() == isMuscu) && tmp.isOccupe() || tmp.isDefectueux()) {
 				ret++;
 			}
 		}
@@ -263,7 +264,7 @@ public class Complexe {
 	
 	public int getNbPlacesOccupes(boolean isMuscu) {
 		int ret = 0;
-		for(int i = 9; i < equipements.size(); i++) {
+		for(int i = 0; i < equipements.size(); i++) {
 			Equipement tmp =equipements.get(i);
 			if(tmp.isMuscu() == isMuscu && tmp.isOccupe()) {
 				ret++;
@@ -278,7 +279,7 @@ public class Complexe {
 	/// METHODES PRIVEES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-	private Arrivee recherche(int num) {
+	public Arrivee recherche(int num) {
 		int i = 0;
 		Arrivee courant = lesArrivees.get(i);
 		while (courant.getNumeroArrivee() != num)
@@ -296,5 +297,11 @@ public class Complexe {
 	private String couleurFit() {
 		ChoixCouleur choixCouleur = new ChoixCouleur(this.etatFit());
 		return choixCouleur.getCouleur().toString();
+	}
+
+
+	public List<Arrivee> getLesArrivees() {
+		
+		return lesArrivees;
 	}	
 }
