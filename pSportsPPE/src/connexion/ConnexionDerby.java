@@ -14,11 +14,11 @@ public class ConnexionDerby {
     private Connection connexion;
     
     private ConnexionDerby() {
-        final String DRIVER = "com.mysql.jdbc.Driver";
-        final String URL = "jdbc:derby://localhost/DB_CFun?localEncoding=ISO8859_1";
+        final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+        final String URL = "jdbc:derby:C:\\Users\\QUENOT\\git\\CFUN\\pSportsPPE\\Ressoucres\\Derby\\Base\\DB_CFUN;create?localEncoding=ISO8859_1";
         
-        final String USER = "sysdba";
-        final String PASSWORD = "masterkey";
+        final String USER = "root";
+        final String PASSWORD = "";
         
         try {
             Class.forName(DRIVER).newInstance();
@@ -49,7 +49,7 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-               sql = "SELECT place FROM Salle WHERE nomSalle = ?";
+               sql = "SELECT place_salle FROM CFUN.Salle WHERE nom_Salle = ?";
                
                pst = connexion.prepareStatement(sql);
                pst.setString(1, salle);
@@ -74,9 +74,9 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-               sql = "SELECT count (*) FROM Equipement E "
-                       + "INNER JOIN salle S ON E.salle = S.id_salle"
-                       + "WHERE etat = true AND libre = false AND S.nomSalle = ?";
+               sql = "SELECT count (*) FROM CFUN.Equipement E"
+                       + " INNER JOIN CFUN.salle S ON E.id_salle = S.id_salle"
+                       + " WHERE etat = 1 AND libre = 0 AND S.nom_Salle = ?";
                
                pst = connexion.prepareStatement(sql);
                pst.setString(1, salle);
@@ -101,9 +101,9 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-               sql = "SELECT count (*) FROM Equipement E "
-                       + "INNER JOIN salle S ON E.salle = S.id_salle"
-                       + "WHERE etat = false AND S.nomSalle = ?";
+               sql = "SELECT count (*) FROM CFUN.Equipement E"
+                       + " INNER JOIN CFUN.salle S ON E.id_salle = S.id_salle"
+                       + " WHERE E.etat = 0 AND S.nom_Salle = ?";
                
                pst = connexion.prepareStatement(sql);
                pst.setString(1, salle);
@@ -142,9 +142,9 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-            sql = "SELECT id FROM Equipement"
-                    + "INNER JOIN salle S ON E.salle = S.id_salle"
-                    + "WHERE etat = true AND libre = ? AND S.nomSalle = ?";
+            sql = "SELECT id_equip FROM CFUN.Equipement"
+                    + " INNER JOIN CFUN.salle S ON E.id_salle = S.id_salle"
+                    + " WHERE etat = 1 AND libre = ? AND S.nom_Salle = ?";
             
             pst = connexion.prepareStatement(sql);
             pst.setInt(1, libre);
@@ -155,9 +155,9 @@ public class ConnexionDerby {
             int id = rs.getInt(1);
 
             
-            sql = "UPDATE Equipement"
-               + "SET Libre = ?"
-               + "WHERE id = ?";
+            sql = "UPDATE CFUN.Equipement"
+               + " SET Libre = ?"
+               + " WHERE id_equip = ?";
            
            pst = connexion.prepareStatement(sql);
            pst.setInt(1, setLibre);
@@ -180,7 +180,7 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-               sql = "SELECT identifiant, mdp FROM gestionnaire";
+               sql = "SELECT identifiant, mdp FROM CFUN.gestionnaire";
                
                st = connexion.createStatement();
                rs = st.executeQuery(sql);

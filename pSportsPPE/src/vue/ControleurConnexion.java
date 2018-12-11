@@ -1,5 +1,8 @@
 package vue;
 
+import java.util.ArrayList;
+
+import connexion.ConnexionDerby;
 import fr.rigaud.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,8 +56,8 @@ public class ControleurConnexion extends ControleurCFun {
         final String ERRNOID = "Veuillez renseigner un identifiant";
         final String ERRNOMDP = "Veuillez renseigner un mot de passe";
         final String ERRLOG = "Mauvais identifiant ou mot de passe";
-        final String LOGIN = "Burgaud";
-        final String MDP = "123";
+
+        ArrayList<String> IDgestionnaire = ConnexionDerby.getInstance().getGestionnaire();
         
         //remise a 0 des messages d'erreurs
         l_noID.setText("");
@@ -68,7 +71,7 @@ public class ControleurConnexion extends ControleurCFun {
             if (pf_pass.getText().length() == 0 ) {
                 l_noMDP.setText(ERRNOMDP);
             } else {
-                if (tf_login.getText().equals(LOGIN) && pf_pass.getText().equals(MDP)) {
+                if (tf_login.getText().equals(IDgestionnaire.get(0)) && pf_pass.getText().equals(IDgestionnaire.get(1))) {
                     openVueGestionnaire();
                 } else {
                     l_Wrong.setText(ERRLOG);

@@ -32,7 +32,9 @@ public class Complexe {
 		this.nbTotalPlacesMuscu = laBase.getNbEquipementsTotal("Musculation");
 		this.nomComplexe = nomComplexe;
 		this.nbPlacesOccupeesFit = laBase.getNbEquipementsOccupees("Fitness");
-		this.nbPlacesOccupeesMuscu = laBase.getNbEquipementsOccupees("Fitness");
+		this.nbPlacesOccupeesMuscu = laBase.getNbEquipementsOccupees("Musculation");
+		
+		System.out.println(ConnexionDerby.getInstance().getNbEquipementsTotal("Musculation"));
 	}
 
 
