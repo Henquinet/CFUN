@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurMain">
+   <children>
+      <Label fx:id="l_bienvenue" alignment="CENTER" layoutX="10.0" layoutY="119.0" prefHeight="62.0" prefWidth="580.0" textAlignment="CENTER" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="119.0">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+        <menus>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

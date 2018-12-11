@@ -5,5 +5,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="Ressoucres/Derby/derby.jar"/>
+	<classpathentry kind="lib" path="Ressoucres/Derby/derbyclient.jar"/>
+	<classpathentry kind="lib" path="Ressoucres/Derby/derbynet.jar"/>
+	<classpathentry kind="lib" path="Ressoucres/Derby/derbytools.jar"/>
+	<classpathentry kind="lib" path="Ressoucres/Derby/ui.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
