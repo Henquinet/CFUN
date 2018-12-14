@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurConnexion">
+   <children>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="64.0" layoutY="143.0" text="Mot de passe :" />
+            <Label layoutX="64.0" layoutY="79.0" text="Identifiant :" />
+            <Button fx:id="b_connection" layoutX="359.0" layoutY="235.0" mnemonicParsing="false" onAction="#connexion" style="-fx-background-color: darkgrey;" text="Se connecter" />
+            <Label fx:id="l_noMDP" layoutX="364.0" layoutY="143.0" text="erreur noMDP" />
+            <Label fx:id="l_noID" layoutX="364.0" layoutY="79.0" text="erreur noID" />
+            <Label fx:id="l_Wrong" layoutX="151.0" layoutY="193.0" text="Erreur wrong" />
+            <TextField fx:id="tf_login" layoutX="151.0" layoutY="75.0" prefHeight="25.0" prefWidth="199.0" />
+            <PasswordField fx:id="pf_pass" layoutX="151.0" layoutY="139.0" prefHeight="25.0" prefWidth="199.0" />
+         </children>
+      </AnchorPane>
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+         <menus>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
