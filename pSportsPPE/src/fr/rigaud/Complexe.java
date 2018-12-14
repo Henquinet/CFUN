@@ -33,8 +33,6 @@ public class Complexe {
 		this.nomComplexe = nomComplexe;
 		this.nbPlacesOccupeesFit = laBase.getNbEquipementsOccupees("Fitness");
 		this.nbPlacesOccupeesMuscu = laBase.getNbEquipementsOccupees("Musculation");
-		
-		System.out.println(ConnexionDerby.getInstance().getNbEquipementsTotal("Musculation"));
 	}
 
 
@@ -56,6 +54,7 @@ public class Complexe {
 				lesArrivees.add(uneArrivee);
 				this.nouvelUsagerFitness();
 				ok = true;
+				laBase.miseAJourUsager("Fitness", true);
 			}
 		} else {
 			if (this.etatMuscu() != 1.0) {
@@ -64,6 +63,7 @@ public class Complexe {
 				lesArrivees.add(uneArrivee);
 				this.nouvelUsagerMusculation();
 				ok = true;
+				laBase.miseAJourUsager("Musculation", true);
 			}
 		}
 		return ok;
@@ -73,8 +73,10 @@ public class Complexe {
 		Arrivee leDepart = recherche(entree);
 		if (leDepart.getChoixSport() == 'F') {
 			this.oterUsagerFitness();
+			laBase.miseAJourUsager("Fitness", false);
 		} else {
 			this.oterUsagerMusculation();
+			laBase.miseAJourUsager("Musculation", false);
 		}
 		lesArrivees.remove(recherche(entree));
 		return leDepart;

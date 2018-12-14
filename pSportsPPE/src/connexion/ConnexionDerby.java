@@ -142,13 +142,13 @@ public class ConnexionDerby {
         String sql = "";
         
         try {
-            sql = "SELECT id_equip FROM CFUN.Equipement"
+            sql = "SELECT id_equip FROM CFUN.Equipement E"
                     + " INNER JOIN CFUN.salle S ON E.id_salle = S.id_salle"
                     + " WHERE etat = 1 AND libre = ? AND S.nom_Salle = ?";
             
             pst = connexion.prepareStatement(sql);
             pst.setInt(1, libre);
-            pst.setString(1, salle);
+            pst.setString(2, salle);
             rs = pst.executeQuery();
             rs.next();
             
@@ -162,8 +162,7 @@ public class ConnexionDerby {
            pst = connexion.prepareStatement(sql);
            pst.setInt(1, setLibre);
            pst.setInt(2, id);
-           rs = pst.executeQuery();
-           rs.next();
+           pst.executeUpdate();
                
         } catch(SQLException e) {
             System.err.println("SQL erreur : " + sql + " " + e.getMessage());

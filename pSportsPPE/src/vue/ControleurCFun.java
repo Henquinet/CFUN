@@ -40,7 +40,7 @@ public class ControleurCFun {
         l_menu.setOnMouseClicked(mouseEvent-> openVueSortieVisiteur());
         m_sortie = new Menu("", l_menu);
         
-        l_menu = new Label("Gestionnaire");
+        l_menu = new Label("Connexion gestionnaire");
         l_menu.setOnMouseClicked(mouseEvent-> openConnexionGestionnaire());
         m_gestionnaire = new Menu("", l_menu);
 
