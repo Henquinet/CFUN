@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="D:/Programs/java/eclipse/plugins/org.apache.derby.core_10.8.1/derbynet.jar"/>
 	<classpathentry kind="lib" path="D:/Programs/java/eclipse/plugins/org.apache.derby.core_10.8.1/derbytools.jar"/>
 	<classpathentry kind="lib" path="D:/Documents/Download/jdk-11.0.1_windows-x64_bin.zip"/>
-	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/libs/barcode.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/barcode.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
