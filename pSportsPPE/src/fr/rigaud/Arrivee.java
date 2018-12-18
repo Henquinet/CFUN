@@ -80,6 +80,7 @@ public class Arrivee {
 		barcode.setAddCheckSum(true);	//Calcul du CheckSum
 		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
 		
+		
 		try {			
 			
 			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
