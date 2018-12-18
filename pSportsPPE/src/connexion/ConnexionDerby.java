@@ -15,7 +15,8 @@ public class ConnexionDerby {
     
     private ConnexionDerby() {
         final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        final String URL = "jdbc:derby:C:\\Users\\Kilia\\eclipse-workspace\\CFUN\\pSportsPPE\\Ressoucres\\Derby\\Base\\DB_CFUN;create?localEncoding=ISO8859_1";
+        String path = System.getProperty("user.dir");
+        final String URL = "jdbc:derby:" + path + "\\Ressoucres\\Derby\\Base\\DB_CFUN;create?localEncoding=ISO8859_1";
         
         final String USER = "root";
         final String PASSWORD = "";
@@ -42,7 +43,7 @@ public class ConnexionDerby {
     }
     
     public int getNbEquipementsTotal(String salle) {
-        int nbFitTotal = 0;
+        int nbEquipSalle = 0;
         
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -56,14 +57,14 @@ public class ConnexionDerby {
                rs = pst.executeQuery();
                rs.next();
                
-               nbFitTotal = rs.getInt(1);;
+               nbEquipSalle = rs.getInt(1);;
                
         } catch(SQLException e) {
             System.err.println("SQL erreur : " + sql + " " + e.getMessage());
         } catch(Exception e) {
             System.err.println("Erreur : "+ e);
         }
-        return nbFitTotal;
+        return nbEquipSalle;
     }
     
     public int getNbEquipementsOccupees(String salle) {

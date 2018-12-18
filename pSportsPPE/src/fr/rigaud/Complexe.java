@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import connexion.ConnexionDerby;
+
 public class Complexe {
 	private static int numeroActuel = 0;
 	private int nbTotalPlacesFit;
@@ -25,6 +27,7 @@ public class Complexe {
 		this.nbTotalPlacesFit = nbTotalPlacesFit;
 		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
 		this.nomComplexe = nomComplexe;
+		ConnexionDerby.getInstance();
 		
 		for(int i = 0; i < nbTotalPlacesMuscu; i++) {
 			equipements.add(new Equipement(true));
@@ -32,10 +35,6 @@ public class Complexe {
 		for(int i = 0; i < nbTotalPlacesFit; i++) {
 			equipements.add(new Equipement(false));
 		}
-		
-		
-		
-		
 	}
 
 	
@@ -88,7 +87,7 @@ public class Complexe {
 	/**
 	 * Gestion de la sortie depuis un code barre
 	 * @param code = données du code barre décodé
-	 * @return
+	 * @return ret l'arrivee
 	 * @throws InvalidBarrCodeException
 	 */
 	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException {
@@ -119,7 +118,7 @@ public class Complexe {
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères");
+			throw new InvalidBarrCodeException(code + " la longueur doit �tre de 12 charact�res");
 		}
 		
 		return ret;
@@ -282,7 +281,7 @@ public class Complexe {
 	public Arrivee recherche(int num) {
 		int i = 0;
 		Arrivee courant = lesArrivees.get(i);
-		while (courant.getNumeroArrivee() != num)
+		while (courant.getNumeroArrivee() != num && i<lesArrivees.size())
 			courant = lesArrivees.get(++i);
 		return courant;
 	}

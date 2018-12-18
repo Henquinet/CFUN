@@ -55,14 +55,13 @@ public class Arrivee {
 		leBillet += MSGDATE + leJour.format(laDate) + "\n";
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		leBillet += MSGHEURE + lHeure.format(laDate) + "\n";
-		genBarcode();
 		return leBillet;
 	}
 
 	/**
 	 * Génère le code-barre (fichier image)
 	 */
-	private String genBarcode() {
+	public String genBarcode() {
 		EAN13 barcode = new EAN13();
 		String data = "";
 
@@ -75,7 +74,6 @@ public class Arrivee {
 		data += format(hAr.get(Calendar.HOUR));
 		data += format(hAr.get(Calendar.MINUTE));
 		
-		System.out.println(data + " : " + data.length());
 		barcode.setData(data); 
 		barcode.setAddCheckSum(true);	//Calcul du CheckSum
 		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
@@ -83,12 +81,12 @@ public class Arrivee {
 		
 		try {			
 			
-			barcode.drawBarcode("D://barcodes/barcode-" + data + ".gif"); 
+			barcode.drawBarcode("C:\\Users/QUENOT/git/CFUN/pSportsPPE/Ressoucres/barcodes/barcode-" + data + ".gif"); 
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return "D://barcodes/barcode-" + data + ".gif";
+		return "C:\\Users/QUENOT/git/CFUN/pSportsPPE/Ressoucres/barcodes/barcode-" + data + ".gif";
 	}
 	
 	/**
