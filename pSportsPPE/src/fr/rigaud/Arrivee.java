@@ -11,7 +11,7 @@ public class Arrivee {
 	private int numeroArrivee;
 	private char choixSport;
 	private long horaireArrivee;
-	private Calendar hDep;  //heure D�part
+	private Calendar hDep;  //heure Départ
 	private Calendar hAr;	//Change
 	private Complexe complexe;
 	
