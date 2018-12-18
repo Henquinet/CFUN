@@ -78,15 +78,15 @@ public class Arrivee {
 		barcode.setAddCheckSum(true);	//Calcul du CheckSum
 		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
 		
+		String path = System.getProperty("user.dir");
 		
 		try {			
-			
-			barcode.drawBarcode("C:\\Users/QUENOT/git/CFUN/pSportsPPE/Ressoucres/barcodes/barcode-" + data + ".gif"); 
+			barcode.drawBarcode(path + "/Ressoucres/barcodes/barcode-" + data + ".gif"); 
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return "C:\\Users/QUENOT/git/CFUN/pSportsPPE/Ressoucres/barcodes/barcode-" + data + ".gif";
+		return path + "/Ressoucres/barcodes/barcode-" + data + ".gif";
 	}
 	
 	/**
