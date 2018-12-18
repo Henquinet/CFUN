@@ -31,11 +31,19 @@ public class Complexe {
 		this.nomComplexe = nomComplexe;
 		
 		for(int i = 0; i < nbTotalPlacesMuscu; i++) {
-			equipements.add(new Equipement(true));
+			if (i < laBase.getNbEquipementsOccupees("Musculation")) {
+			    equipements.add(new Equipement(true, true));
+			} else {
+		         equipements.add(new Equipement(true));
+			}
 		}
 		for(int i = 0; i < nbTotalPlacesFit; i++) {
-			equipements.add(new Equipement(false));
-		}
+            if (i < laBase.getNbEquipementsOccupees("Fitness")) {
+                equipements.add(new Equipement(false, true));
+            } else {
+                 equipements.add(new Equipement(false));
+            }
+        }
 	}
 
 	
@@ -56,7 +64,7 @@ public class Complexe {
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
 				if(rechercheEquipement(choix == 'M',uneArrivee)) {
-					
+				    laBase.miseAJourUsager("Fitness", true);
 					ok = true;
 				}
 
@@ -67,7 +75,7 @@ public class Complexe {
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
 				if(rechercheEquipement(choix == 'M',uneArrivee)) {
-					
+				    laBase.miseAJourUsager("Musculation", true);
 					ok = true;
 				}
 				
@@ -179,6 +187,11 @@ public class Complexe {
 			if(tmp.getArrivee() != null && tmp.getArrivee().equals(ar) && tmp.isOccupe()) {
 				tmp.setArrivee(null);
 				tmp.setOccupe(false);
+				if (tmp.getMuscu()) { //WALA YA PËUT ETRE MOYEN DE RECUP LA SALLE AVEC EQUIPPEMENT
+				    laBase.miseAJourUsager("Musculation", false);
+				} else {
+				    laBase.miseAJourUsager("Fitness", false);
+				}
 			}
 			else {
 				cpt++;
