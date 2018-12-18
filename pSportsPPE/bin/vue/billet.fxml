@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="179.0" maxWidth="400.0" minHeight="100.0" minWidth="243.0" prefHeight="144.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurBillet">
+<AnchorPane maxHeight="144.0" maxWidth="288.0" minHeight="144.0" minWidth="288.0" prefHeight="144.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurBillet">
    <children>
       <Label fx:id="l_billet" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="72.0" prefWidth="258.0" text="Billet d'entrée n° :" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="b_quitter" layoutX="220.0" layoutY="103.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="54.0" text="Quitter" textAlignment="CENTER" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="103.0" />

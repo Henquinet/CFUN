@@ -16,18 +16,19 @@ public class Complexe {
 	private String nomComplexe;
 	List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
 	List<Equipement> equipements = new ArrayList<Equipement>();
-
+	private ConnexionDerby laBase;
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-	public Complexe(final int nbTotalPlacesMuscu, final int nbTotalPlacesFit, final String nomComplexe) {
-		this.nbTotalPlacesFit = nbTotalPlacesFit;
-		this.nbTotalPlacesMuscu = nbTotalPlacesMuscu;
+	public Complexe(final String nomComplexe) {
+	    laBase = ConnexionDerby.getInstance();
+	    
+		this.nbTotalPlacesFit = laBase.getNbEquipementsTotal("Fitness");;
+		this.nbTotalPlacesMuscu = laBase.getNbEquipementsTotal("Musculation");
 		this.nomComplexe = nomComplexe;
-		ConnexionDerby.getInstance();
 		
 		for(int i = 0; i < nbTotalPlacesMuscu; i++) {
 			equipements.add(new Equipement(true));
@@ -118,7 +119,7 @@ public class Complexe {
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères");
+			throw new InvalidBarrCodeException(code + " la longueur doit ï¿½tre de 12 charactï¿½res");
 		}
 		
 		return ret;

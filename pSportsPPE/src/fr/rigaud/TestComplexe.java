@@ -10,7 +10,7 @@ public class TestComplexe {
 	private static final String AUTRE = "Autre op�ration (O/N) : ";
 	
 	public static void main(String[] args) {
-		Complexe leComplexe = new Complexe(nbMuscu, nbFit, nomComplexe);
+		Complexe leComplexe = new Complexe(nomComplexe);
 		
 		char repAutre = 'O';
 		char repType;
