@@ -145,8 +145,8 @@ public class Complexe {
 		final String MSGHEURE = "heure : ";
 		final String MSGDISPMUSCU = "Places disponibles M : ";
 		final String MSGDISPFIT = "Places disponibles F : ";
-		final String MSGOCCMUSCU = "Places occup�es M : ";
-		final String MSGOCCFIT = "Places occup�es F : ";
+		final String MSGOCCMUSCU = "Places occupées M : ";
+		final String MSGOCCFIT = "Places occupées F : ";
 		final String MSGTXMUSCU = "Taux occ. M : ";
 		final String MSGTXFIT = "Taux occ. F : ";
 		final String MSGCOULMUSCU = "Couleur M : ";
@@ -187,7 +187,7 @@ public class Complexe {
 			if(tmp.getArrivee() != null && tmp.getArrivee().equals(ar) && tmp.isOccupe()) {
 				tmp.setArrivee(null);
 				tmp.setOccupe(false);
-				if (tmp.getMuscu()) { //WALA YA PËUT ETRE MOYEN DE RECUP LA SALLE AVEC EQUIPPEMENT
+				if (tmp.getMuscu()) {
 				    laBase.miseAJourUsager("Musculation", false);
 				} else {
 				    laBase.miseAJourUsager("Fitness", false);
