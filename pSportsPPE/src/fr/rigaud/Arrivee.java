@@ -126,10 +126,6 @@ public class Arrivee {
 
 		this.hDep = Calendar.getInstance();
 		
-		//on simule ici une sortie 32 mn plus tard
-        //hDep.add(Calendar.MINUTE, +32);
-        hDep.add(Calendar.MINUTE, +8);
-		
 		Date laDate = hDep.getTime();
 		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
 		leTicket += MSGDATE + leJour.format(laDate) + "\n";
