@@ -114,7 +114,7 @@ public class Arrivee {
 	 */
 	public String afficheTicket() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Ticket de sortie n� : ";
+		final String MSGNUM = "Ticket de sortie n° : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 		final String MSGCOUT = "Montant : ";

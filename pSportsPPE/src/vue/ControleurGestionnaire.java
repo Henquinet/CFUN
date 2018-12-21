@@ -60,7 +60,7 @@ public class ControleurGestionnaire extends ControleurCFun {
     private Circle c_fit_color;
     
     @FXML
-    private Label l_infos;
+    private ListView<String> lv_infos;
 	
     //Onglets-----------------------------------------------
     @FXML
@@ -88,7 +88,8 @@ public class ControleurGestionnaire extends ControleurCFun {
 	public void initialize() {
 	    super.initialize();
 	    
-	    l_infos.setText(complexeCFUN.lesInfos());
+	    lv_infos.setEditable(false);
+	    lv_infos.getItems().add(complexeCFUN.lesInfos());
 	}
 	
 	@FXML

@@ -32,15 +32,15 @@ public class ControleurCFun {
     
     @FXML
     protected void initialize() {
-        l_menu = new Label("Entrée Visiteurs");
+        l_menu = new Label("Entrée");
         l_menu.setOnMouseClicked(mouseEvent-> openVueEntreeVisiteur());
         m_entree = new Menu("", l_menu);
         
-        l_menu = new Label("Sortie Visiteurs");
+        l_menu = new Label("Sortie");
         l_menu.setOnMouseClicked(mouseEvent-> openVueSortieVisiteur());
         m_sortie = new Menu("", l_menu);
         
-        l_menu = new Label("Connexion Gestionnaire");
+        l_menu = new Label("Gestionnaire");
         l_menu.setOnMouseClicked(mouseEvent-> openConnexionGestionnaire());
         m_gestionnaire = new Menu("", l_menu);
 

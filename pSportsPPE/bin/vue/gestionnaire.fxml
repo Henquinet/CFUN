@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -19,7 +20,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="l_infos" layoutX="14.0" layoutY="68.0" text="LesInfos" underline="true" />
+                        <ListView fx:id="lv_infos" layoutX="12.0" layoutY="68.0" prefHeight="111.0" prefWidth="576.0" />
                      </children>
                   </AnchorPane>
                </content>
