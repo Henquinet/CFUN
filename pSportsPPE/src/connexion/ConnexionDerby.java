@@ -16,7 +16,7 @@ public class ConnexionDerby {
     private ConnexionDerby() {
         final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
         String path = System.getProperty("user.dir");
-        final String URL = "jdbc:derby:" + path + "\\Ressoucres\\Derby\\Base\\DB_CFUN;create?localEncoding=ISO8859_1";
+        final String URL = "jdbc:derby:C:\\Users\\kilia\\eclipse-workspace\\CFUN\\pSportsPPE\\Ressoucres\\Derby\\Base\\DB_CFUN;create?localEncoding=ISO8859_1";
         
         final String USER = "root";
         final String PASSWORD = "";
@@ -28,6 +28,7 @@ public class ConnexionDerby {
             System.err.println("Classe non trouvée : " + DRIVER);
         } catch(Exception e) {
             System.err.println("Erreur : "+ e);
+            
         } 
     }
     

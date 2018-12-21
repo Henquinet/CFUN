@@ -5,8 +5,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/QUENOT/git/CFUN/pSportsPPE/libs/barcode.jar"/>
-	<classpathentry kind="lib" path="C:/Users/QUENOT/git/CFUN/pSportsPPE/libs/org.apache.derby.core_10.8.1/derby.jar"/>
-	<classpathentry kind="lib" path="C:/Users/QUENOT/git/CFUN/pSportsPPE/libs/org.apache.derby.ui_1.1.3/ui.jar"/>
+	<classpathentry kind="lib" path="libs/barcode.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/Derby/derby.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/Derby/derbyclient.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/Derby/derbynet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/Derby/derbytools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kilia/eclipse-workspace/CFUN/pSportsPPE/Ressoucres/Derby/ui.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

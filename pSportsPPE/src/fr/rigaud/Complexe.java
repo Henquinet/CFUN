@@ -54,11 +54,9 @@ public class Complexe {
 				Complexe.setNumeroActuel();
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
-				if(rechercheEquipement(choix == 'M',uneArrivee)) {
-					
+				if(rechercheEquipement(choix == 'M',uneArrivee)) {	
 					ok = true;
 				}
-
 			}
 		} else {
 			if (this.etatMuscu() != 1.0) {
@@ -106,19 +104,17 @@ public class Complexe {
 			if(ret.gethAr().get(Calendar.DAY_OF_MONTH) == day
 				&& ret.gethAr().get(Calendar.MONTH) == month 
 				&& ret.gethAr().get(Calendar.YEAR) == year
-				&& ret.gethAr().get(Calendar.HOUR) == hour 
+				&& ret.gethAr().get(Calendar.HOUR_OF_DAY) == hour 
 				&& ret.gethAr().get(Calendar.MINUTE) == min)
 			{
-				
-				sortieEquipement(ret);
-				
+				sortieEquipement(ret);	
 			}
 			else {
 				throw new InvalidBarrCodeException(code);
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères");
+			throw new InvalidBarrCodeException(code + " la longueur doit Ãªtre de 12 charactÃ¨res");
 		}
 		
 		return ret;

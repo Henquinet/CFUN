@@ -71,7 +71,8 @@ public class Arrivee {
 		data += format(hAr.get(Calendar.MONTH) + 1);
 		data += format(hAr.get(Calendar.YEAR));
 		
-		data += format(hAr.get(Calendar.HOUR));
+
+		data += format(hAr.get(Calendar.HOUR_OF_DAY));
 		data += format(hAr.get(Calendar.MINUTE));
 		
 		barcode.setData(data); 
@@ -147,25 +148,26 @@ public class Arrivee {
 	 */
 	public double calculPrix(long duree) {
 		double cout = 0;
-		if (duree <= 30 && duree > 15) {
-			cout = 0.5;
-		} else {
-			if (duree < 60 && duree >30) {
-				cout = 1;
+		if(duree >15) {
+			if (duree <= 30 && duree > 15) {
+				cout = 0.5;
 			} else {
-				// cout fixe d'une heure
-				cout = 1;
-				duree -= 60;
-				// + tous les 1/4 h commencés
-				long nbquarts, reste;
-				nbquarts = duree / 15;
-				reste = duree % 15;
-				if (reste != 0)
-					nbquarts++;
-				cout += nbquarts * 0.5;
+				if (duree < 60 && duree >30) {
+					cout = 1;
+				} else {
+					// cout fixe d'une heure
+					cout = 1;
+					duree -= 60;
+					// + tous les 1/4 h commencés
+					long nbquarts, reste;
+					nbquarts = duree / 15;
+					reste = duree % 15;
+					if (reste != 0)
+						nbquarts++;
+					cout += nbquarts * 0.5;
+				}
 			}
 		}
-	
 		return cout;
 	}
 	
