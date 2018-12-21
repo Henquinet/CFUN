@@ -61,6 +61,14 @@ public class ControleurGestionnaire extends ControleurCFun {
     
     @FXML
     private ListView<String> lv_infos;
+    
+    //Equipements Defectueux -------------------------------
+    @FXML
+    private Label l_defec_nb;
+    @FXML
+    private Button b_defec_set;
+    @FXML
+    private Button b_defec_unset;
 	
     //Onglets-----------------------------------------------
     @FXML
@@ -69,6 +77,8 @@ public class ControleurGestionnaire extends ControleurCFun {
     private Tab tab_fit;
 	@FXML
     private Tab tab_muscu;
+	@FXML
+    private Tab tab_defec;
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

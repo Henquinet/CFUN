@@ -25,6 +25,7 @@ public class Complexe {
 		
 	public Complexe(final String nomComplexe) {
 	    laBase = ConnexionDerby.getInstance();
+	    int defec = 0;
 	    
 		this.nbTotalPlacesFit = laBase.getNbEquipementsTotal("Fitness");;
 		this.nbTotalPlacesMuscu = laBase.getNbEquipementsTotal("Musculation");
@@ -34,14 +35,25 @@ public class Complexe {
 			if (i < laBase.getNbEquipementsOccupees("Musculation")) {
 			    equipements.add(new Equipement(true, true));
 			} else {
-		         equipements.add(new Equipement(true));
+			    if (defec < laBase.getNbEquipementsDefectueux("Musculation")) {
+			        equipements.add(new Equipement(true, false, true));
+			        defec++;
+			    } else {
+			        equipements.add(new Equipement(true));
+			    }   
 			}
 		}
+		defec = 0;
 		for(int i = 0; i < nbTotalPlacesFit; i++) {
             if (i < laBase.getNbEquipementsOccupees("Fitness")) {
                 equipements.add(new Equipement(false, true));
             } else {
-                 equipements.add(new Equipement(false));
+                if (defec < laBase.getNbEquipementsDefectueux("Fitness")) {
+                    equipements.add(new Equipement(false, false, true));
+                    defec++;
+                } else {
+                    equipements.add(new Equipement(false));
+                }
             }
         }
 	}
