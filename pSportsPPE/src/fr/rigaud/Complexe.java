@@ -127,7 +127,7 @@ public class Complexe {
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit �tre de 12 charact�res");
+			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères");
 		}
 		
 		return ret;

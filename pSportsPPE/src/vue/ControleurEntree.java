@@ -58,6 +58,13 @@ public class ControleurEntree extends ControleurCFun{
     @FXML
     public void initialize() {
         super.initialize();
+        
+        if (complexeCFUN.getNbPlacesRestantesMuscu() == 0) {
+            b_entrer_muscu.setDisable(true);
+        }
+        if (complexeCFUN.getNbPlacesRestantesFit() == 0) {
+            b_entrer_fit.setDisable(true);
+        }
     }
 
     @FXML
