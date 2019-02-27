@@ -4,14 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+
+import connexion.ConnexionDerby;
 import fr.rigaud.*;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class ControleurGestionnaire extends ControleurCFun {	
+
 	//Accueil----------------------------------------------------------
 	@FXML
 	private Label l_main;
@@ -62,14 +66,26 @@ public class ControleurGestionnaire extends ControleurCFun {
     @FXML
     private ListView<String> lv_infos;
     
-    //Equipements Defectueux -------------------------------
+    //Equipements -------------------------------
     @FXML
     private Label l_defec_nb;
     @FXML
-    private Button b_defec_set;
+    private Button b_plus;
     @FXML
-    private Button b_defec_unset;
-	
+    private Button b_moins;
+    @FXML
+    private Button b_reset;
+    @FXML
+    private TableView<EquipementModel> tv_equip;
+	@FXML
+	private TableColumn<EquipementModel,String> col_id = new TableColumn<EquipementModel,String>("ID");
+	@FXML
+	private TableColumn<EquipementModel,String> col_etat = new TableColumn<EquipementModel,String>("ETAT");
+	@FXML
+	private TableColumn<EquipementModel,String> col_libre = new TableColumn<EquipementModel,String>("LIBRE");
+	@FXML
+	private TableColumn<EquipementModel,String> col_salle = new TableColumn<EquipementModel,String>("SALLE");
+    
     //Onglets-----------------------------------------------
     @FXML
     private TabPane tabp;
@@ -94,12 +110,22 @@ public class ControleurGestionnaire extends ControleurCFun {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ControleurGestionnaire() {} 
 	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// METHODES FXML ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 	@FXML
 	public void initialize() {
 	    super.initialize();
 	    
 	    lv_infos.setEditable(false);
 	    lv_infos.getItems().add(complexeCFUN.lesInfos());
+	    
+	    col_id.setCellValueFactory(new PropertyValueFactory<EquipementModel,String>("id"));
+	    col_etat.setCellValueFactory(new PropertyValueFactory<EquipementModel,String>("etat"));
+	    col_libre.setCellValueFactory(new PropertyValueFactory<EquipementModel,String>("libre"));
+	    col_salle.setCellValueFactory(new PropertyValueFactory<EquipementModel,String>("salle"));
+	    fillTable();
 	}
 	
 	@FXML
@@ -112,6 +138,32 @@ public class ControleurGestionnaire extends ControleurCFun {
         showFitOrMusc(true);
     }
 
+	@FXML
+	private void reset() {
+		ConnexionDerby con = ConnexionDerby.getInstance();
+		con.reset();
+	}
+	
+	@FXML
+	private void addEquip() {
+		
+	}
+	
+	@FXML
+	private void delEquip() {
+		
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// METHODES PRIVEES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	private void fillTable() {
+		ConnexionDerby con = ConnexionDerby.getInstance();
+		tv_equip.setItems(con.getEquipements());
+	}
+	
+	
 	private void showFitOrMusc(boolean fitn) {
 		double etat = 0;
 		String date = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(new Date());

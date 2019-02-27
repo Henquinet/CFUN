@@ -6,13 +6,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurGestionnaire">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurGestionnaire">
    <children>
-   	  <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+   	  <MenuBar fx:id="menuBar" prefHeight="164.0" prefWidth="600.0">
         <menus>
         </menus>
       </MenuBar>
@@ -64,18 +65,17 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Nombre d'equipements déféctueux :" />
-                        <Label fx:id="l_defec_nb" layoutX="217.0" layoutY="14.0" prefHeight="17.0" prefWidth="131.0" text="Label" />
-                        <Button fx:id="b_defec_set" layoutX="184.0" layoutY="69.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="240.0" text="Equipement déféctueux ++">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="b_defec_unset" layoutX="184.0" layoutY="147.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="240.0" text="Equipement déféctueux --">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Button>
+                        <Button fx:id="b_reset" layoutX="540.0" layoutY="119.0" mnemonicParsing="false" onAction="#reset" prefHeight="46.0" prefWidth="46.0" text="Reset" />
+                        <TableView fx:id="tv_equip" layoutX="11.0" layoutY="5.0" prefHeight="227.0" prefWidth="523.0">
+                          <columns>
+                            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="col_etat" prefWidth="75.0" text="ETAT" />
+                              <TableColumn fx:id="col_libre" prefWidth="75.0" text="Libre" />
+                              <TableColumn fx:id="col_salle" prefWidth="75.0" text="Salle" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="b_plus" layoutX="541.0" layoutY="26.0" mnemonicParsing="false" onAction="#reset" prefHeight="41.0" prefWidth="43.0" text="+" />
+                        <Button fx:id="b_moins" layoutX="541.0" layoutY="72.0" mnemonicParsing="false" onAction="#reset" prefHeight="41.0" prefWidth="44.0" text="-" />
                      </children>
                   </AnchorPane>
                </content>

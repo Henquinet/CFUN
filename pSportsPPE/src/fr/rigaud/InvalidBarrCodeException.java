@@ -19,6 +19,9 @@ public class InvalidBarrCodeException extends Exception{
 		final String MSG = "Le code-barre suivant est incorrecte : ";
 		return MSG + message;
 	}
-	
+	public String getMessage() {
+		final String MSG = "Le code-barre suivant est incorrecte : ";
+		return MSG + message;
+	}
 	
 }

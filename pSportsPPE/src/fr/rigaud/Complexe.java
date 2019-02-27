@@ -18,6 +18,9 @@ public class Complexe {
 	List<Equipement> equipements = new ArrayList<Equipement>();
 	private ConnexionDerby laBase;
 	
+	private int entMusc = 0;
+	private int entFit = 0;
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// CONSTRUTEURS ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +66,11 @@ public class Complexe {
 	/// METHODES PUBLIQUES //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	//Change
+	/**
+	 * Entrée d'un usager dans le complexe et attribution d'un équipement
+	 * @param uneArrivee
+	 * @return
+	 */
 	public boolean entreeUsager(final Arrivee uneArrivee) {
 		boolean ok;
 		char choix;
@@ -72,6 +79,7 @@ public class Complexe {
 		choix = uneArrivee.getChoixSport();
 		if (choix == 'F') {
 			if (this.etatFit() != 1.0) {
+				entFit+=1;
 				Complexe.setNumeroActuel();
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
@@ -83,6 +91,7 @@ public class Complexe {
 			}
 		} else {
 			if (this.etatMuscu() != 1.0) {
+				entMusc+=1;
 				Complexe.setNumeroActuel();
 				uneArrivee.setNumeroArrivee(Complexe.getNumeroActuel());
 				lesArrivees.add(uneArrivee);
@@ -98,6 +107,11 @@ public class Complexe {
 		return ok;
 	}
 
+	
+	/**
+	 * Sortie de l'usager
+	 * @return Arrivee
+	 */
 	public Arrivee sortieUsager(final int entree) {
 		Arrivee leDepart = recherche(entree);
 		sortieEquipement(leDepart);
@@ -121,7 +135,11 @@ public class Complexe {
 			int year = 2000 + Integer.parseInt(code.substring(6, 8));
 			int hour = Integer.parseInt(code.substring(8, 10));
 			int min = Integer.parseInt(code.substring(10, 12));
+			//récupérattion de l'arrivée
 			ret = recherche(nBillet);
+			if(ret==null) {
+				throw new InvalidBarrCodeException("Le numéro de billet : " + nBillet + " est invalide !");
+			}
 			
 			//Vérification du code barre
 			if(ret.gethAr().get(Calendar.DAY_OF_MONTH) == day
@@ -130,16 +148,14 @@ public class Complexe {
 				&& ret.gethAr().get(Calendar.HOUR) == hour 
 				&& ret.gethAr().get(Calendar.MINUTE) == min)
 			{
-				
 				sortieEquipement(ret);
-				
 			}
 			else {
-				throw new InvalidBarrCodeException(code);
+				throw new InvalidBarrCodeException(code + " La date ne correspond pas à l'arrivée");
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères");
+			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères : " + code.length());
 		}
 		
 		return ret;
@@ -151,6 +167,10 @@ public class Complexe {
 		return (this.getNbPlacesIndisponibles(false)) * 1.0d / this.nbTotalPlacesFit;
 	}
 
+	/**
+	 * Synthèse de l'état du complexe
+	 * @return
+	 */
 	public String lesInfos() {
 		final String MSGNOM = "Etat du complexe : ";
 		final String MSGDATE = "date : ";
@@ -164,6 +184,7 @@ public class Complexe {
 		final String MSGCOULMUSCU = "Couleur M : ";
 		final String MSGCOULFIT = "Couleur F : ";
 		final String MSGBAS = "M : en musculation	F : en fitness";
+		final String MSGTOTALENTR= "Nombre d'entrées :";
 
 		String leDoc;
 
@@ -185,12 +206,17 @@ public class Complexe {
 		leDoc += MSGOCCFIT + getNbPlacesIndisponibles(false) + "\t";
 		leDoc += MSGTXFIT + df2.format(this.etatFit()) + "\t";
 		leDoc += MSGCOULFIT + this.couleurFit() + "\n\n";
-
+		leDoc += MSGTOTALENTR + " M : " + entMusc + "  F :" + entFit + "\n";
+		
 		leDoc += MSGBAS + "\n\n";
 		return leDoc;
 	}
 
 
+	/**
+	 * Sortie d'un usager, libeation d'un equipement 
+	 * @param ar
+	 */
 	public void sortieEquipement(Arrivee ar) {
 		int cpt = 0;
 		boolean find = false;
@@ -306,9 +332,10 @@ public class Complexe {
 		
 	public Arrivee recherche(int num) {
 		int i = 0;
-		Arrivee courant = lesArrivees.get(i);
-		while (courant.getNumeroArrivee() != num && i<lesArrivees.size())
-			courant = lesArrivees.get(++i);
+		Arrivee courant = null;
+		while (i<lesArrivees.size()-1 && lesArrivees.get(i).getNumeroArrivee() != num) {i++;}
+		if(lesArrivees.get(i).getNumeroArrivee() == num)
+			courant = lesArrivees.get(i);
 		return courant;
 	}
 	

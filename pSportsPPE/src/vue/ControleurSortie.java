@@ -10,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -40,9 +43,18 @@ public class ControleurSortie extends ControleurCFun {
             arrivee = complexeCFUN.sortieBarCode(barcode);
             openTicket(arrivee);
             complexeCFUN.sortieUsager(arrivee.getNumeroArrivee());
+            tf_barcode.clear();
             
         } catch (InvalidBarrCodeException e) {
-            e.printStackTrace();
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Erreur : Code-Barre invalide !");
+        	alert.setHeaderText("Code barre invalide !");
+        	alert.setContentText(e.getMessage());
+        	alert.showAndWait().ifPresent(rs -> {
+        	    if (rs == ButtonType.OK) {
+        	        System.out.println("Pressed OK.");
+        	    }
+        	});
         }       
     }
     

@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import fr.rigaud.EquipementModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class ConnexionDerby {
     private static ConnexionDerby singleton;
     
@@ -40,6 +44,59 @@ public class ConnexionDerby {
     
     public Connection getConnexion() {
         return connexion;
+    }
+    
+    public ObservableList<EquipementModel> getEquipements(){
+    	ObservableList<EquipementModel> data = FXCollections.observableArrayList();
+    	ResultSet rs = null;
+    	PreparedStatement pst = null;
+    	
+    	String query = "SELECT * FROM CFUN.Equipement E"
+    			+ " INNER JOIN CFUN.Salle S ON E.id_salle = S.id_salle";
+    	try {
+    		pst = connexion.prepareStatement(query);
+    		rs = pst.executeQuery();
+    		
+    		while(rs.next()) {
+    			String etat = "OK";
+    			String libre = "oui";
+    			if(rs.getInt("etat") == 0) {
+    				etat="defectueux";
+    			}
+    			if(rs.getInt("libre") == 0) {
+    				libre="non";
+    			}
+    			
+    			data.add(new EquipementModel(rs.getString("id_equip"), etat, libre, rs.getString("nom_salle")));
+    		}
+    		
+    		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return data;
+    }
+    
+    /*
+    * Remet tous les équipement libre et à l'état 1
+     */
+    public void reset() {
+    	PreparedStatement pst = null;
+        ResultSet rs = null;
+    	String query = "UPDATE CFUN.Equipement " 
+    					+ "SET ETAT = ?";
+    				//	+ "SET LIBRE = 1;";
+    	try {
+			pst = connexion.prepareStatement(query);
+			pst.setInt(1, 1);
+			pst.execute();
+    	
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
     
     public int getNbEquipementsTotal(String salle) {

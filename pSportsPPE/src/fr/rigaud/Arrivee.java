@@ -59,7 +59,9 @@ public class Arrivee {
 	}
 
 	/**
-	 * Génère le code-barre (fichier image)
+	 * Génère le code-barre EAN13 (fichier image)
+	 * retuourne le chemin absolu
+	 * @return PATH
 	 */
 	public String genBarcode() {
 		EAN13 barcode = new EAN13();
@@ -76,17 +78,17 @@ public class Arrivee {
 		
 		barcode.setData(data); 
 		barcode.setAddCheckSum(true);	//Calcul du CheckSum
-		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
+		barcode.setShowCheckSumChar(false);	//Affichage du CheckSum sur le code barre
 		
 		String path = System.getProperty("user.dir");
 		
 		try {			
-			barcode.drawBarcode(path + "/Ressoucres/barcodes/barcode-" + data + ".gif"); 
+			barcode.drawBarcode(path + "\\Ressoucres\\barcodes\\barcode-" + data + ".gif"); 
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return path + "/Ressoucres/barcodes/barcode-" + data + ".gif";
+		return path + "\\Ressoucres\\barcodes\\barcode-" + data + ".gif";
 	}
 	
 	/**
@@ -172,6 +174,10 @@ public class Arrivee {
 	/// GETTER & SETTERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * Retourne le montant corresspondant à la durée d'utilisation
+	 * @return
+	 */
 	public double getMontant() {
 		double cout = 0;
 
