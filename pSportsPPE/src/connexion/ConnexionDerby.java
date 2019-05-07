@@ -107,7 +107,7 @@ public class ConnexionDerby {
     public void reset() {
     	PreparedStatement pst = null;
         ResultSet rs = null;
-    	String query = "update \"CFUN\".\"EQUIPEMENT\" set \"LIBRE\"=1";
+    	String query = "update \"CFUN\".\"EQUIPEMENT\" set \"LIBRE\"=1, \"ETAT\"= 1";
     				//	+ "SET LIBRE = 1;";
     	try {
 			pst = connexion.prepareStatement(query);
@@ -120,6 +120,30 @@ public class ConnexionDerby {
 			e.printStackTrace();
 		}
     	
+    }
+    
+    public void switchDefectueux(int equip, int etat) throws Exception {
+    	if(etat <= 1 && etat >= 0) {
+            PreparedStatement pst = null;
+            String sql = "";
+            
+            try {
+                   sql = "update CFUN.Equipement set etat = ? WHERE ID_EQUIP = ?";
+                   
+                   pst = connexion.prepareStatement(sql);
+                   pst.setInt(1, etat);
+                   pst.setInt(2, equip);
+                   pst.executeUpdate();
+                   
+            } catch(SQLException e) {
+                System.err.println("SQL erreur : " + sql + " " + e.getMessage());
+            } catch(Exception e) {
+                System.err.println("Erreur : "+ e);
+            }
+    	}
+    	else {
+    		throw new Exception("L'état doit se situer entre 0 et 1 !");
+    	}
     }
     
     public int getNbEquipementsTotal(String salle) {

@@ -112,6 +112,7 @@ public class ControleurGestionnaire extends ControleurCFun {
 	private final String NBPL = "Nombre de places libre : ";
 	private final String TXOCC = "Taux occ. : ";
 	
+	
 	private ConnexionDerby con = ConnexionDerby.getInstance();
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ControleurGestionnaire() {} 
@@ -147,7 +148,16 @@ public class ControleurGestionnaire extends ControleurCFun {
 	@FXML
 	private void reset() {
 		ConnexionDerby con = ConnexionDerby.getInstance();
+		List<Equipement> lst = super.complexeCFUN.getEquipements();
+		for(int i = 0; i < lst.size(); i++) {
+			lst.get(i).setArrivee(null);
+			lst.get(i).setOccupe(false);
+			lst.get(i).setDefectueux(false);;
+
+		}
+		
 		con.reset();
+		fillTable();
 	}
 	
 	@FXML
@@ -166,6 +176,32 @@ public class ControleurGestionnaire extends ControleurCFun {
 	
 	@FXML
 	private void switchDefectueux() {
+		EquipementModel e = tv_equip.getFocusModel().getFocusedItem();
+		Equipement eq = ControleurMain.complexeCFUN.getEquipements().get(tv_equip.getFocusModel().getFocusedIndex());
+		
+		int etat = 0;
+		if(eq.isDefectueux()) 
+			etat = 1;
+		
+		
+		//db------------------------------------------------------------
+		try {
+			con.switchDefectueux(Integer.parseInt(e.getId()), etat);
+			e = new EquipementModel(e.getId(),String.valueOf(etat),e.getLibre(),e.getSalle());
+			if(etat == 0) {
+				eq.setDefectueux(true);
+			}
+			else {
+				eq.setDefectueux(false);
+			}
+			fillTable();
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 	}
 	
@@ -192,9 +228,9 @@ public class ControleurGestionnaire extends ControleurCFun {
 	}
 	
 	private void fillTable() {
+		tv_equip.getItems().clear();
 		tv_equip.setItems(con.getEquipements());
 	}
-	
 	
 	private void showFitOrMusc(boolean fitn) {
 		double etat = 0;

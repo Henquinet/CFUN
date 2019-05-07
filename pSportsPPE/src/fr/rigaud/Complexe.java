@@ -20,6 +20,7 @@ public class Complexe {
 	
 	private int entMusc = 0;
 	private int entFit = 0;
+	private double totalSortieJour = 0d;
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +116,7 @@ public class Complexe {
 	public Arrivee sortieUsager(final int entree) {
 		Arrivee leDepart = recherche(entree);
 		sortieEquipement(leDepart);
-		
+		this.totalSortieJour += leDepart.getMontant();
 		return leDepart;
 	}
 	
@@ -123,9 +124,9 @@ public class Complexe {
 	 * Gestion de la sortie depuis un code barre
 	 * @param code = données du code barre décodé
 	 * @return ret l'arrivee
-	 * @throws InvalidBarrCodeException
+	 * @throws InvalidBarrCodeException, NumberFormatException
 	 */
-	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException {
+	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException, NumberFormatException {
 		Arrivee ret = null;
 		if(code.length() == 13) {
 			//Récupération des données du code barre
@@ -136,11 +137,12 @@ public class Complexe {
 			int hour = Integer.parseInt(code.substring(8, 10));
 			int min = Integer.parseInt(code.substring(10, 12));
 			int checkSum = Integer.parseInt(code.substring(12,13));
-			//récupérattion de l'arrivée
+		
+			//récupération de l'arrivée
 			ret = recherche(nBillet);
-			if(ret==null) {
+			if(ret==null) 
 				throw new InvalidBarrCodeException("Le numéro de billet : " + nBillet + " est invalide !");
-			}
+			
 			
 			//Vérification du code barre
 			if(ret.gethAr().get(Calendar.DAY_OF_MONTH) == day
@@ -150,6 +152,7 @@ public class Complexe {
 				&& ret.gethAr().get(Calendar.MINUTE) == min)
 			{
 				if(ret.getCheckSum() == checkSum) {
+					this.totalSortieJour += ret.getMontant();
 					sortieEquipement(ret);
 				}
 				else {
@@ -192,7 +195,8 @@ public class Complexe {
 		final String MSGCOULFIT = "Couleur F : ";
 		final String MSGBAS = "M : en musculation	F : en fitness";
 		final String MSGTOTALENTR= "Nombre d'entrées :";
-
+		final String TOT = "Total de la journée : ";
+		
 		String leDoc;
 
 		DecimalFormat df2 = new DecimalFormat("##0.00%");
@@ -214,7 +218,7 @@ public class Complexe {
 		leDoc += MSGTXFIT + df2.format(this.etatFit()) + "\t";
 		leDoc += MSGCOULFIT + this.couleurFit() + "\n\n";
 		leDoc += MSGTOTALENTR + " M : " + entMusc + "  F :" + entFit + "\n";
-		
+		leDoc += TOT + this.totalSortieJour + "€\n";
 		leDoc += MSGBAS + "\n\n";
 		return leDoc;
 	}
@@ -312,7 +316,7 @@ public class Complexe {
 		int ret = 0;
 		for(int i = 0; i < equipements.size(); i++) {
 			Equipement tmp =equipements.get(i);
-			if((tmp.isMuscu() == isMuscu) && tmp.isOccupe() || tmp.isDefectueux()) {
+			if((tmp.isMuscu() == isMuscu) && (tmp.isOccupe() || tmp.isDefectueux())) {
 				ret++;
 			}
 		}
@@ -341,7 +345,7 @@ public class Complexe {
 		int i = 0;
 		Arrivee courant = null;
 		while (i<lesArrivees.size()-1 && lesArrivees.get(i).getNumeroArrivee() != num) {i++;}
-		if(lesArrivees.get(i).getNumeroArrivee() == num)
+		if(!lesArrivees.isEmpty() && lesArrivees.get(i).getNumeroArrivee() == num)
 			courant = lesArrivees.get(i);
 		return courant;
 	}
@@ -363,4 +367,10 @@ public class Complexe {
 		
 		return lesArrivees;
 	}	
+	
+	public double getTotal() {
+		return this.totalSortieJour;
+	}
+	
+	
 }

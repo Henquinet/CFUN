@@ -55,7 +55,18 @@ public class ControleurSortie extends ControleurCFun {
         	        System.out.println("Pressed OK.");
         	    }
         	});
-        }       
+        } 
+        catch(NumberFormatException e) {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Erreur : Code-Barre invalide !");
+        	alert.setHeaderText("Code barre invalide !");
+        	alert.setContentText("Le code barre doit contenir uniquement des chiffres");
+        	alert.showAndWait().ifPresent(rs -> {
+        	    if (rs == ButtonType.OK) {
+        	        System.out.println("Pressed OK.");
+        	    }
+        	});
+        }
     }
     
     private void openTicket(Arrivee arrivee) {
