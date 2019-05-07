@@ -127,7 +127,7 @@ public class Complexe {
 	 */
 	public Arrivee sortieBarCode(String code) throws InvalidBarrCodeException {
 		Arrivee ret = null;
-		if(code.length() == 12) {
+		if(code.length() == 13) {
 			//Récupération des données du code barre
 			int nBillet = Integer.parseInt(code.substring(0, 2));
 			int day = Integer.parseInt(code.substring(2, 4));
@@ -135,6 +135,7 @@ public class Complexe {
 			int year = 2000 + Integer.parseInt(code.substring(6, 8));
 			int hour = Integer.parseInt(code.substring(8, 10));
 			int min = Integer.parseInt(code.substring(10, 12));
+			int checkSum = Integer.parseInt(code.substring(12,13));
 			//récupérattion de l'arrivée
 			ret = recherche(nBillet);
 			if(ret==null) {
@@ -148,14 +149,20 @@ public class Complexe {
 				&& ret.gethAr().get(Calendar.HOUR) == hour 
 				&& ret.gethAr().get(Calendar.MINUTE) == min)
 			{
-				sortieEquipement(ret);
+				if(ret.getCheckSum() == checkSum) {
+					sortieEquipement(ret);
+				}
+				else {
+					System.out.println("Checksum passé : " + checkSum + " CheckSum original : " + ret.getCheckSum());
+					throw new InvalidBarrCodeException(code + " Le checkSum ne correspond pas !");
+				}
 			}
 			else {
 				throw new InvalidBarrCodeException(code + " La date ne correspond pas à l'arrivée");
 			}
 		}
 		else {
-			throw new InvalidBarrCodeException(code + " la longueur doit être de 12 charactères : " + code.length());
+			throw new InvalidBarrCodeException(code + " la longueur doit être de 13 charactères : " + code.length());
 		}
 		
 		return ret;

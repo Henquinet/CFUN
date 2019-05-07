@@ -1,9 +1,11 @@
 package vue;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
-
+import java.util.Optional;
 
 import connexion.ConnexionDerby;
 import fr.rigaud.*;
@@ -11,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -76,6 +79,8 @@ public class ControleurGestionnaire extends ControleurCFun {
     @FXML
     private Button b_reset;
     @FXML
+    private ToggleButton tog_defectueux;
+    @FXML
     private TableView<EquipementModel> tv_equip;
 	@FXML
 	private TableColumn<EquipementModel,String> col_id = new TableColumn<EquipementModel,String>("ID");
@@ -107,6 +112,7 @@ public class ControleurGestionnaire extends ControleurCFun {
 	private final String NBPL = "Nombre de places libre : ";
 	private final String TXOCC = "Taux occ. : ";
 	
+	private ConnexionDerby con = ConnexionDerby.getInstance();
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public ControleurGestionnaire() {} 
 	
@@ -146,11 +152,20 @@ public class ControleurGestionnaire extends ControleurCFun {
 	
 	@FXML
 	private void addEquip() {
+		int salle = selectSalle();
+		
+		
 		
 	}
 	
 	@FXML
 	private void delEquip() {
+
+		
+	}
+	
+	@FXML
+	private void switchDefectueux() {
 		
 	}
 	
@@ -158,8 +173,25 @@ public class ControleurGestionnaire extends ControleurCFun {
 	/// METHODES PRIVEES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	private int selectSalle() {
+		List<String> choices = con.getSalles();
+		
+		ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+		dialog.setTitle("Choix d'une salle");
+		dialog.setHeaderText("Veuillez choisir une salle :");
+		dialog.setContentText("Salles :");
+
+		// Traditional way to get the response value.
+		Optional<String> result = dialog.showAndWait();
+		
+
+		// The Java 8 way to get the response value (with lambda expression).
+		result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+		
+		return choices.indexOf(result.get());
+	}
+	
 	private void fillTable() {
-		ConnexionDerby con = ConnexionDerby.getInstance();
 		tv_equip.setItems(con.getEquipements());
 	}
 	

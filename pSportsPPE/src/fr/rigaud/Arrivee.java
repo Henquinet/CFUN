@@ -9,6 +9,7 @@ public class Arrivee {
 	
 	private static int numeroSortie = 0;
 	private int numeroArrivee;
+	private int checkSum;
 	private char choixSport;
 	private long horaireArrivee;
 	private Calendar hDep;  //heure Départ
@@ -77,8 +78,9 @@ public class Arrivee {
 		data += format(hAr.get(Calendar.MINUTE));
 		
 		barcode.setData(data); 
+		this.checkSum = makeCheckSum(data);
 		barcode.setAddCheckSum(true);	//Calcul du CheckSum
-		barcode.setShowCheckSumChar(false);	//Affichage du CheckSum sur le code barre
+		barcode.setShowCheckSumChar(true);	//Affichage du CheckSum sur le code barre
 		
 		String path = System.getProperty("user.dir");
 		
@@ -88,8 +90,29 @@ public class Arrivee {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return path + "\\Ressoucres\\barcodes\\barcode-" + data + ".gif";
+		return path + "\\Ressoucres\\barcodes\\barcode-" + data +".gif";
 	}
+	
+	private int makeCheckSum(String data) {
+		int odd = 0;
+		int even = 0;
+		int ret = 0;
+		
+		for(int i = data.length() -1; i >= 0; i=i-2) {
+			odd += Character.getNumericValue(data.charAt(i));
+		}
+		
+		for(int i = data.length() - 2; i >= 0; i=i-2) {
+			even += Character.getNumericValue(data.charAt(i));
+											  
+		}
+		
+		//(10 - [ (3 * 26 + 22) module 10 ] ) modulo 10
+		ret = 10 - (( 3 * odd + even % 10) % 10);
+		
+		return ret % 10;
+	}
+	
 	
 	/**
 	 * Rajoute un 0 avant le nombre si < 10
@@ -209,5 +232,9 @@ public class Arrivee {
 
 	public Calendar gethAr() {
 		return hAr;
+	}
+	
+	public int getCheckSum() {
+		return this.checkSum;
 	}
 }

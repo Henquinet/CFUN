@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.rigaud.EquipementModel;
 import javafx.collections.FXCollections;
@@ -44,6 +45,28 @@ public class ConnexionDerby {
     
     public Connection getConnexion() {
         return connexion;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public List<String> getSalles(){
+    	ArrayList<String> lst = new ArrayList<String>();
+    	
+    	ResultSet rs = null;
+    	PreparedStatement pst = null;
+    	
+    	String query = "SELECT * FROM CFUN.Salle";
+    	try {
+    		pst = connexion.prepareStatement(query);
+    		rs = pst.executeQuery();
+    		while(rs.next()) {
+    			lst.add(rs.getString("nom_salle"));
+    		}
+    	}
+    	catch(SQLException e) {
+    		
+    	}
+    	return lst;
     }
     
     public ObservableList<EquipementModel> getEquipements(){
@@ -84,13 +107,13 @@ public class ConnexionDerby {
     public void reset() {
     	PreparedStatement pst = null;
         ResultSet rs = null;
-    	String query = "UPDATE CFUN.Equipement " 
-    					+ "SET ETAT = ?";
+    	String query = "update \"CFUN\".\"EQUIPEMENT\" set \"LIBRE\"=1";
     				//	+ "SET LIBRE = 1;";
     	try {
 			pst = connexion.prepareStatement(query);
-			pst.setInt(1, 1);
-			pst.execute();
+			
+			int res = pst.executeUpdate();
+			
     	
     	} catch (SQLException e) {
 			// TODO Auto-generated catch block

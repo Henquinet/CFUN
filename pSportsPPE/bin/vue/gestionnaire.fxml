@@ -8,10 +8,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurGestionnaire">
+<AnchorPane prefHeight="434.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurGestionnaire">
    <children>
    	  <MenuBar fx:id="menuBar" prefHeight="164.0" prefWidth="600.0">
         <menus>
@@ -23,7 +24,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="lv_infos" layoutX="12.0" layoutY="68.0" prefHeight="111.0" prefWidth="576.0" />
+                        <ListView fx:id="lv_infos" layoutX="14.0" layoutY="33.0" prefHeight="267.0" prefWidth="696.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -35,7 +36,7 @@
                         <Label fx:id="l_muscu_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
                         <Label fx:id="l_muscu_fm_etat" layoutX="56.0" layoutY="179.0" prefHeight="17.0" prefWidth="123.0" text="Etat place occupée :" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="321.0" />
                         <Label fx:id="l_muscu_fm_dispo" layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
-                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="236.0" layoutY="173.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="142.0" />
+                        <Circle fx:id="c_muscu_color" fill="WHITE" layoutX="112.0" layoutY="221.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="581.0" AnchorPane.topAnchor="190.0" />
                         <Label fx:id="l_muscu_fm_ocup" layoutX="56.0" layoutY="106.0" text="Nb place(s) occupée(s) :" />
                         <Label fx:id="l_muscu_fm_taux" layoutX="56.0" layoutY="130.0" text="Taux occ. M" />
                         <Label fx:id="l_muscu_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
@@ -51,7 +52,7 @@
                         <Label fx:id="l_fit_fm_t" layoutX="14.0" layoutY="45.0" text="Infos" underline="true" />
                         <Label fx:id="l_fit_fm_etat" layoutX="56.0" layoutY="179.0" text="Etat place occupée :" AnchorPane.bottomAnchor="50.0" />
                         <Label fx:id="l_fit_fm_dispo" layoutX="56.0" layoutY="81.0" text="Nb place(s) disponible(s) :" />
-                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="236.0" layoutY="173.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="142.0" />
+                        <Circle fx:id="c_fit_color" fill="WHITE" layoutX="109.0" layoutY="221.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="190.0" />
                         <Label fx:id="l_fit_fm_ocup" layoutX="56.0" layoutY="106.0" text="Nb place(s) occupée(s) :" />
                         <Label fx:id="l_fit_fm_taux" layoutX="56.0" layoutY="130.0" text="Taux occ. M" />
                         <Label fx:id="l_fit_fm_comp" layoutX="14.0" layoutY="14.0" text="Etat du complexe :" />
@@ -65,17 +66,18 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="b_reset" layoutX="540.0" layoutY="119.0" mnemonicParsing="false" onAction="#reset" prefHeight="46.0" prefWidth="46.0" text="Reset" />
-                        <TableView fx:id="tv_equip" layoutX="11.0" layoutY="5.0" prefHeight="227.0" prefWidth="523.0">
+                        <Button fx:id="b_reset" layoutX="612.0" layoutY="63.0" mnemonicParsing="false" onAction="#reset" prefHeight="34.0" prefWidth="91.0" text="Reset" />
+                        <TableView fx:id="tv_equip" layoutX="11.0" layoutY="5.0" prefHeight="365.0" prefWidth="588.0">
                           <columns>
                             <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="col_etat" prefWidth="75.0" text="ETAT" />
-                              <TableColumn fx:id="col_libre" prefWidth="75.0" text="Libre" />
-                              <TableColumn fx:id="col_salle" prefWidth="75.0" text="Salle" />
+                            <TableColumn fx:id="col_etat" prefWidth="88.0" text="ETAT" />
+                              <TableColumn fx:id="col_libre" prefWidth="90.4000244140625" text="Libre" />
+                              <TableColumn fx:id="col_salle" prefWidth="89.5999755859375" text="Salle" />
                           </columns>
                         </TableView>
-                        <Button fx:id="b_plus" layoutX="541.0" layoutY="26.0" mnemonicParsing="false" onAction="#reset" prefHeight="41.0" prefWidth="43.0" text="+" />
-                        <Button fx:id="b_moins" layoutX="541.0" layoutY="72.0" mnemonicParsing="false" onAction="#reset" prefHeight="41.0" prefWidth="44.0" text="-" />
+                        <Button fx:id="b_plus" layoutX="614.0" layoutY="14.0" mnemonicParsing="false" onAction="#addEquip" prefHeight="41.0" prefWidth="43.0" text="+" />
+                        <Button fx:id="b_moins" layoutX="659.0" layoutY="14.0" mnemonicParsing="false" onAction="#delEquip" prefHeight="41.0" prefWidth="44.0" text="-" />
+                        <ToggleButton fx:id="tog_defectueux" layoutX="613.0" layoutY="104.0" mnemonicParsing="false" onAction="#switchDefectueux" prefHeight="26.0" prefWidth="90.0" text="Défectueur" />
                      </children>
                   </AnchorPane>
                </content>
