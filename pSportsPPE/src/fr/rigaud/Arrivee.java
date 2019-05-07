@@ -168,7 +168,6 @@ public class Arrivee {
 	 */
 	public double calculPrix(long duree) {
 		double cout = 0;
-		duree = 50;
 		if (duree > 15) {
     		if (duree <= 30 && duree > 15) {
     			cout = 0.5;
